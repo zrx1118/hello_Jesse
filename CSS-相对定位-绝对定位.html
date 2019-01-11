@@ -1,0 +1,53 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      body,
+      div {
+        padding: 0;
+        margin: 0;
+      }
+      .moving {
+        border: 1px solid blue;
+        margin: auto;
+        width: 100px;
+        height: 100px;
+        /* 设置了relative 就可以设置left right top bottom属性 */
+        position: relative;
+      }
+      .moving:hover {
+        right: 2px;
+        bottom: 10px;
+      }
+      .stay-parent {
+          position: relative;
+          margin: auto;
+          width: 500px;
+          height: 500px;
+          background-color: yellow;
+      }
+      .stay {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: bisque;
+        left: 100px;
+        top: 100px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <br />
+    <br />
+    <div class="moving">I am a DIV</div>
+    <div class="stay-parent">
+        <div class="stay">
+            ABSOLUTE
+        </div>
+    </div>
+  </body>
+</html>

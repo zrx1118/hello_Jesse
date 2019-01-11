@@ -1,0 +1,328 @@
+
+/* Reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0}
+
+body,button,input,select,textarea {
+    font: 12px/1.5 tahoma,arial,'Hiragino Sans GB','%u5B8B%u4F53',sans-serif;
+}
+/* p {
+    font-size: 16px;
+    color: silver;
+} */
+h5 {
+    font-size: 12px;
+    color: blue;
+}
+/* span {
+    font-size: 28px;
+} */
+#li_1 {
+    color: aquamarine;
+}
+#li_2 {
+    color:red;
+}
+#li_3 {
+    color:plum;
+}
+#li_4 {
+    color:blue;
+}
+.date {
+    color: purple;
+}
+/* 复合选择器 */
+li.first {
+    background-color: lightblue;
+    font-weight: bold;
+}
+#li_second {
+    background-color: brown;
+}
+.ul_number li a{
+    color: deeppink;
+}
+label.lbl_email {
+    color: forestgreen;
+}
+/* 子代选择器 不影响后代 */
+ul > span {
+    color: aqua;
+}
+/* 属性选择器 */
+li[class] {
+    color: violet;
+}
+li[id] {
+    font-size: 30px;
+}
+/* 伪类选择器 */
+.ul_lie a {
+    color: coral;
+}
+.ul_lie a:hover {
+    color: hsl(303, 72%, 52%);
+}
+/* 点击未放开 */
+.ul_lie a:active {
+    color: midnightblue;
+}
+.input_lie:focus {
+    color: red;
+}
+/* 第一个span修改 */
+span:first-child{
+    color: red;
+}
+/* 段落首字符 */
+p.first_letter::first-letter{
+    color: green;
+    font-size: 30px;
+}
+p.first_letter::first-line{
+    color: gold;
+}
+/* !!!!!!!!!!!!before after */
+#temp::before {
+    content: "========";
+}
+#temp::after {
+    content: "--------";
+}
+ul > li > a , dl > dd > a {
+    text-decoration: none;
+}
+ul.menu li a:hover {
+    color: white;
+    background-color: silver;
+}
+.news_list a:hover {
+    color: white;
+    background-color: gold;
+}
+.p_fontfamily {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: blueviolet;
+}
+.div_skyle {
+    border: 1px solid red;
+    height: 100px;
+    line-height: 100px ;
+    text-align: center;
+}
+.p_text-indent {
+    text-indent: 2em;
+}
+p.pre-demo {
+    white-space: pre;
+    border: 1px solid black;
+    width: 200px;
+}
+p.p_overflow {
+    border:1px solid black;
+    width:200px;
+    height: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.text_center {
+    text-align: center;
+    font-size: 12px;
+}
+.text_center_title {
+    text-align: center;
+    font-size: 26px;
+}
+.text_center a {
+    color: blue;
+    text-decoration: none;
+}
+.text_details {
+    width: 900px;
+    text-indent: 2em;
+    /* blod元素居中对齐 */
+    margin: 0 auto;
+}
+.table_info {
+    border: 2px solid pink;
+    border-collapse: collapse;
+}
+input {
+    outline-style: none;
+}
+#div_flow {
+    border: 1px solid red;
+    width: 70px;
+    height: 70px;
+    background-color: gold;
+    float: left;
+}
+#div_flow2 {
+    border: 1px solid blue;
+    width: 100px;
+    height: 100px;
+    background-color: gold;
+    float: left;
+}
+.parent .child {
+    border: 1px solid purple;
+}
+.parent {
+    overflow: hidden;
+    clear: both;
+}
+.child {
+    background-color: gold;
+    width: 100px;;
+    height: 100px;
+    float: left;
+}
+.div_footer {
+    border: 1px solid blue;
+    clear: both;
+}
+.top_bar,.left_bar,.content_bar,.footer_bar,.main_bar,.footer_bar{
+    border:  1px solid green;
+    overflow: hidden;
+}
+.top_bar {
+    height: 100px;
+    width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+.left_bar {
+    width: 200px;
+    height: 300px;
+    float: left;
+}
+.content_bar {
+    width: 796px;
+    height: 500px;
+    float: left;
+}
+.main_bar {
+    width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.footer_bar {
+    clear: both;
+    width: 1000px;
+    margin: 0 auto;
+}
+.large_top_bar {
+    height: 100px;
+    text-align: center;
+    background-color:#ffd700;
+}
+.large_left_bar {
+    width: 200px;
+    height: 500px;
+    background-color: blue;
+    float: left;
+}
+/* .large_content_bar {
+    margin-left: 203px;
+    height: 500px;
+    background-color: coral;
+} */
+.large_content_bar {
+    float: right;
+    width: 100px;
+    height: 500px;
+    background-color: coral;
+}
+.large_middle_bar {
+    margin: 0 105px 0 205px;
+    background-color: lightsteelblue;
+}
+.large_footer_bar {
+    background-color: aquamarine;
+    margin: 0 auto;
+    clear: both;
+}
+/* .iframe_Text {
+    display: inline-block;
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    src: url('./images/icon-heart.svg');
+} */
+.card_text {
+    /* float: left; */
+    position: absolute;
+    top: 150px;
+    left: 50px;
+    color: aliceblue;
+}
+.card_header {
+    /* float: left; */
+   
+}
+.pic_main {
+    float: left;
+    margin: 10px 10px;
+}
+.card {
+    position: relative;
+    /* width: 100%; */
+}
+.card_name {
+    position: absolute;
+    left: 210px;
+    top: 20px;
+    padding: 3px 15px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    background-color: #d24a3f;
+    color: white;
+}
+/* .div_name {
+    position: absolute;
+    left: 210px;
+    top: 20px;
+    padding: 3px 15px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    background-color: #d24a3f;
+    color: white;
+} */
+.card_li {
+    list-style-type:none;
+}
+.card_label {
+    position: absolute;
+    top: 170px;
+    left: 300px;
+    font-size: 14px;
+    color: white;
+}
+.card_shadow {
+    position: absolute;
+    top:0px;
+    left: 0px;
+    opacity: 0.5;
+    width: 340px;
+    height: 245px;
+    background: linear-gradient(to bottom, #000000 0%,#ffffff 0%,#000000 100%);
+    border-radius: 8px;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+}
+.container .card {
+    /* background: red; */
+    /* padding: 0 50px; */
+    margin: 10px;
+    /* flex: 1; */
+    flex-basis: 340px;
+    overflow: hidden;
+}
+/* .flex-container .flex-item--lg {
+    flex: 2;
+} */
