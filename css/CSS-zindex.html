@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .ab {
+        position:absolute;
+        width: 200px;
+        height: 200px;
+        border: 1px solid red;
+    }
+    .d1 {
+        z-index: 100;
+        left: 100px;
+        top: 100px;
+        background-color: gold;
+    }
+    .d2 {
+        z-index: 200;
+        background-color: blue;
+    }
+    .d3 {
+        z-index: 2;
+        left: 20px;
+        top: -20px;
+        background-color: green;
+    }
+</style>
+
+<body>
+    <div class="ab d1">
+        DIV1
+    </div>
+    <div class="ab d2">
+        DIV2
+    </div>
+    <div class="ab d3">
+        DIV3
+    </div>
+</body>
+</html>

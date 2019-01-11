@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="">
+    <title>cf</title>
+</head>
+<style>
+    body ,div {
+        padding: 0;margin: 0;
+    }
+    div {
+        border: 1px solid red;
+    }
+    .clearfix1 {
+        float:right;
+        height: 100px;
+        width: 100px;
+        background-color: silver;
+    }
+    .clearfix::after,.clearfix::before {
+        content: " ";
+        display: table;
+    }
+    .clearfix::after {
+        clear: both;
+    }
+    .clearfix {
+        *zoom: 1;
+    }
+</style>
+<body>
+    <div class="clearfix">
+        text text text text......... 
+        <div class="clearfix1">float Div</div>
+        <div class="clearfix1">float Div2</div>
+    </div>
+</body>
+</html>
