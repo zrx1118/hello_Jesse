@@ -1,0 +1,184 @@
+@charset "utf-8";
+body {
+    color: #666;
+    font-size: 12px;
+}
+
+a {
+    color: #666;
+}
+
+
+/* S Layout area */
+
+.j-header {}
+
+.j-header .top-nav {
+    margin: 0 auto;
+    width: 1190px;
+    height: 74px;
+    padding-top: 24px;
+    /* line-height: 74px; */
+    /* border: 1px solid blue; */
+}
+
+
+/* S logo area */
+
+.j-header .top-nav .logo {
+    float: left;
+}
+
+.top-nav .logo h1 {
+    position: absolute;
+    text-indent: -9999px;
+}
+
+
+/* E logo area */
+
+
+/* S Search area */
+
+.j-header .top-nav .search {
+    position: relative;
+    margin: 0 265px 0 357px;
+    padding-top: 10px;
+    line-height: 30px;
+}
+
+.j-header .top-nav .search .infor-search {
+    position: relative;
+    display: inline-block;
+    width: 66px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+}
+
+.j-header .top-nav .search input {
+    display: inline-block;
+    width: 400px;
+    height: 32px;
+    text-align: left;
+    padding-left: 1em;
+    border: 1px solid #e0e0e0;
+    margin: 0px 0px -1px -1px;
+}
+
+.j-header .top-nav .search .infor-search,
+.j-header .top-nav .search input {
+    float: left;
+}
+
+
+/* infor-menu */
+
+.j-header .top-nav .search .infor-menu {
+    position: absolute;
+    display: none;
+}
+
+.j-header .top-nav .search .infor-menu li {
+    border: 1px solid #e0e0e0;
+    width: 66px;
+    height: 28px;
+    margin: 0px 0px -1px -1px;
+}
+
+.j-header .search .infor-menu li:hover {
+    background-color: #e0e0e0;
+}
+
+
+/* menu-hover */
+
+.j-header .infor-search:hover .infor-menu {
+    display: block;
+}
+
+
+/* icon-search */
+
+.j-header .top-nav .search .icon-search {
+    position: absolute;
+    background: url(../images/search.svg) no-repeat;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    left: 435px;
+    top: 11px;
+}
+
+.j-header .top-nav .search .icon-triangle-down {
+    float: right;
+    margin: 14px 6px 14px 0;
+}
+
+
+/* E Search area */
+
+
+/* S User area */
+
+.j-header .top-nav .user-nav {
+    padding-top: 5px;
+}
+
+.j-header .user-nav li {
+    float: left;
+    height: 42px;
+    line-height: 42px;
+    margin: 0 11px 0 14px;
+}
+
+.j-header .user-nav .user-profile {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+
+/*  1st message */
+
+.j-header .user-nav .msg-wrap {
+    width: 30px;
+    height: 40px;
+    background: url('../images/infor.svg') no-repeat left top 8px;
+}
+
+.j-header .user-nav .msg {
+    display: inline-block;
+    /* margin: 5px 0 0 10px; */
+    height: 20px;
+    line-height: 15px;
+    padding-left: 5px;
+    background: url('../images/red-circle.svg') no-repeat right top;
+}
+
+.j-header .user-nav .msg-num {
+    color: #ffffff;
+}
+
+
+/* E User area */
+
+.j-header .top-nav .user-nav {
+    float: right;
+}
+
+.j-header .site-nav-wrap {
+    margin: 0 auto;
+    height: 60px;
+    width: 1190px;
+    border: 1px solid blue;
+}
+
+
+/* E Layout area */
+
+
+/* S Navi area */
+
+
+/* E Navi area */

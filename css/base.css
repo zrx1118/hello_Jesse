@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+/* Common css */
+
+
+/* tri-angle-down */
+
+.triangle-down {
+    border: 4px solid #666;
+    border-style: solid dashed dashed;
+    border-color: #666 transparent transparent;
+    width: 0;
+    height: 0;
+}
+
+.clearfix::before,
+.clearfix::after {
+    content: " ";
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}

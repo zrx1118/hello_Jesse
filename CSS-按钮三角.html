@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <style>
-      body,
-      div {
+      body,div,ul,li {
         padding: 0;
         margin: 0;
       }
@@ -60,17 +59,78 @@
         width: 0;
         height: 0;
         border: 5px solid blue;
-        border-color: transparent  blue transparent transparent;
+        border-color: transparent blue transparent transparent;
+      }
+      .box {
+        width: 300px;
+        height: 100px;
+        border: 1px solid #ccc;
+        margin: 100px auto;
+      }
+      .bubble-s {
+        position: relative;
+      }
+      .bubble-s::before ,.bubble-s::after{
+        content: "";
+        display: block;
+        position: absolute;
+        left:60%;
+        top: -18px;
+        border: 9px solid #ccc;
+        border-color:transparent transparent #ccc;
+        border-style: dashed dashed solid;
+      }
+      .bubble-s::after {
+        left:60%;
+        top: -16px;
+        border: 9px solid #fff;
+        border-color:transparent transparent #fff;
+        border-style: dashed dashed solid;
+      }
+      .menu {
+        list-style: none;
+        width: 200px;
+        height: 100px;
+        margin: 0 auto;
+      }
+      .menu li { 
+        height: 30px;
+        line-height: 30px;
+        width: 200px;
+        border: 1px solid #ccc; 
+        overflow: hidden;
+      }
+      .menu a {
+        float: left;
+        padding-left: 1em;
+        color: #3e3e3e;
+        width: 200px;
+        height: 30px;
+        line-height: 30px;
+        text-decoration: none;
+      }
+      .menu a:hover {
+        background-color: #cecece;
+        color: #ffffff;
       }
     </style>
   </head>
   <body>
     <div class="main">
       <div class="btn1">气泡按钮</div>
-      <hr>
+      <hr />
       <div class="btn2">气泡按钮</div>
-      <hr>
-      
+      <hr />
+    </div>
+    <div class="box bubble-s"></div>
+    <div>
+      <ul class="menu bubble-s" >
+        <li><a href="#">Menu1</a></li>
+        <li><a href="#">Menu2</a></li>
+        <li><a href="#">Menu3</a></li>
+        <li><a href="#">Menu4</a></li>
+        <li><a href="#">Menu5</a></li>
+      </ul>
     </div>
   </body>
 </html>
