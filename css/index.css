@@ -190,18 +190,18 @@
     
     .site-nav {
         background-color: #3598db;
+        position: relative;
     }
     
     .site-nav .bg-red-wrap {
         margin-left: 1190px;
-        position: relative;
     }
     
     .site-nav .bg-red-wrap .bg-red {
         position: absolute;
         right: 0;
         top: 0;
-        width: 50%;
+        width: 40%;
         height: 60px;
         background-color: #e7594d;
     }
@@ -261,3 +261,56 @@
     }
     /* E Main Navi area */
     /* ====================================================================== */
+
+    .container{
+        margin-top: 100px;
+        width: 100%;
+        height: 60px;
+        line-height: 60px;
+        position: relative;
+        background: #2db0f9;
+        overflow: hidden;
+    }
+    .main{
+        width: 60%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: inherit;
+    }
+    .aside{
+        width: 40%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: #e7594d;
+        height: inherit;
+    }
+    .main-list{
+        margin-left: 100px;
+    }
+    .aside-list{
+        margin-right: 100px;
+    }
+    .nav-list li{
+        float: left;
+        margin: 0 20px;
+    }
+    .nav-list li:last-child{
+        position: relative;
+    }
+    .nav-list li:last-child::before{
+        content: '';
+        position: absolute;
+        left: -20px;
+        top: 20px;
+        width: 0;
+        height: 20px;
+        border-left: 1px solid #151616;
+    }
+    /* .main-list li {
+        float: left;
+    }
+    .aside-list li {
+        float: right;
+    } */
