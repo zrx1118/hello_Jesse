@@ -75,6 +75,18 @@
         .blog-box li:hover {
             background-color: #d8e0e7;
         }
+        .container{
+            margin: 20px 0 0 100px;
+        }
+        .btn{
+            width: 100px;height: 40px; line-height: 40px; background: #ff8500; border-radius: 5px; text-align: center; color: #fff;
+        }
+        .container li {
+            width: 200px; padding-left: 20px; line-height: 40px;border-bottom: 1px solid #ff8500;
+        }
+        .container li:hover{
+            background: #ff8500; color: #fff; transition: .3s;
+        }
     </style>
 </head>
 <body>
@@ -102,5 +114,23 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="btn" id="clickBtn">click me</div>
+        <ul id="list"></ul>
+    </div>
+
+    <script>
+        var clickBtn = document.getElementById('clickBtn'),
+            list = document.getElementById('list');
+        clickBtn.onclick = clickFn;
+        function clickFn(num) {
+            var str = '',
+                num = num | 10;
+            for(var i = 0; i < num; i++) {
+                str += '<li onclick="clickFn('+i+')">I am '+ i +' li</li>';
+            }
+            list.innerHTML = str;
+        }
+    </script>
 </body>
 </html>
