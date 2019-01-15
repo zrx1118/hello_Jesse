@@ -13,6 +13,31 @@
     height: 0;
 }
 
+
+/* angle */
+
+.triangle-up-s {
+    position: relative;
+}
+
+.triangle-up-s::before,
+.triangle-up-s::after {
+    content: " ";
+    border: 5px solid #e0e0e0;
+    border-style: dashed dashed solid;
+    border-color: transparent transparent #e0e0e0;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 50%;
+    top: -10px;
+}
+
+.triangle-up-s::after {
+    border-color: transparent transparent #ffffff;
+    top: -9px;
+}
+
 .clearfix::before,
 .clearfix::after {
     content: " ";
@@ -24,4 +49,11 @@
     height: 0;
     line-height: 0;
     visibility: hidden;
+}
+
+
+/* double border */
+
+.double-border {
+    margin: 0px 0px -1px -1px;
 }
