@@ -40,15 +40,29 @@
 
 .clearfix::before,
 .clearfix::after {
-    content: " ";
+    content: "";
     display: table;
 }
 
-.clearfix::after {
+
+/* .clearfix::after {
     clear: both;
     height: 0;
     line-height: 0;
     visibility: hidden;
+} */
+
+.clearfix::after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: "";
+    clear: both;
+    height: 0;
+}
+
+.clearfix {
+    *zoom: 1;
 }
 
 
@@ -56,4 +70,8 @@
 
 .double-border {
     margin: 0px 0px -1px -1px;
+}
+
+.cover {
+    background-color: #fff;
 }
