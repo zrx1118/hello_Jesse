@@ -195,6 +195,7 @@
     /* S Main Navi area */
     
     .site-nav {
+        min-width: 1190px;
         background-color: #3598db;
         position: relative;
     }
@@ -271,6 +272,7 @@
     /* S Banner area */
     
     .j-banner {
+        min-width: 1190px;
         overflow: hidden;
         width: 100%;
         position: relative;
@@ -368,6 +370,7 @@
     /* S foot area */
     
     .j-footer {
+        min-width: 1190px;
         background-color: #373a43;
         height: 141px;
         text-align: center;
