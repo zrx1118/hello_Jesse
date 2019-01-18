@@ -144,6 +144,10 @@
         z-index: 100;
     }
     
+    .j-header .user-menu-information>li {
+        padding-left: 5px;
+    }
+    
     .user-nav .user-menu-information li:hover {
         background-color: #e0e0e0;
     }
@@ -306,3 +310,69 @@
         opacity: 0.2;
     }
     /* E Banner area */
+    /* ========================================================================== */
+    /* S Main Information area */
+    
+    .j-main .main-list-1,
+    .j-main .main-list-2 {
+        margin: 0 auto;
+        width: 1190px;
+        padding-top: 40px;
+    }
+    /* setting header */
+    
+    .p-module .p-module-header {
+        font-size: 22px;
+        /* line-height: 55px; */
+        height: 22px;
+        color: #1a1a1a;
+    }
+    
+    .p-module .p-module-header .p-module-title {
+        float: left;
+        padding-left: 18px;
+        height: 22px;
+        line-height: 22px;
+        border-left: 7px solid #2db0f9;
+    }
+    /* setting more... */
+    
+    .p-module .p-module-header .p-module-more {
+        float: right;
+        line-height: 22px;
+        font: 12px;
+        color: #5da7df;
+    }
+    /* Main Body */
+    
+    .p-module .p-module-body {
+        overflow: hidden;
+    }
+    
+    .p-module .p-module-body .p-list-item {
+        padding-top: 30px;
+        margin: 0 14px;
+        font-size: 14px;
+        line-height: 28px;
+        color: #1a1a1a;
+        float: left;
+    }
+    
+    .p-module .p-list-item img {
+        width: 204px;
+        height: 204px;
+        border: 1px solid #e1e1e1;
+    }
+    /* E Main Information area */
+    /* ========================================================================== */
+    /* S foot area */
+    
+    .j-footer {
+        background-color: #373a43;
+        height: 141px;
+        text-align: center;
+        padding-top: 44px;
+        font-size: 16px;
+        color: #fff;
+    }
+    /* S foot area */
