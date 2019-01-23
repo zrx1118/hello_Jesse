@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 指定访问 -->
+    <meta name="robots" content="index,follow">
+    <!-- 网易核心词汇 少于874字符-->
+    <meta name="Keywords" content="网易,邮箱,游戏,新闻,体育,娱乐,女性,亚运,论坛,短信,数码,汽车,手机,财经,科技,相册">
+    <!-- facebook 描述 少于150字符-->
+    <meta name="description" content="Create an account or log in to Facebook. Connect with friends, family and other people you know. Share photos and videos, send messages and get updates.">
+    <!-- 页面图标 -->
+    <link rel="shortcut icon" href="https://static.xx.fbcdn.net/rsrc.php/yo/r/iRmz9lCMBD2.ico" />
+    <!-- dns与解析 增加读取速度
+    <link rel="dns-prefetch" href="//img.alicdn.com" /> -->
+    <!-- use css -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <!-- html5 news IE9以上-->
+    <header>
+        Html5 News section:Header
+    </header>
+    <article>
+        <h1>Content</h1>
+    </article>
+    <p>Details.............</p>
+    <aside>
+        Left
+    </aside>
+    <footer>
+        <hr>
+        Bottom
+    </footer>
+    <!-- Html5 smart meta -->
+    <hr>
+    <h2>html5 news</h2>
+    <form action="#">
+        <label for="" class="lbl_email">Email address check:</label>
+        <input type="email" name="" id="">
+        <input type="submit" value="check">
+        <label for="">Number check:</label>
+        <input type="number" name="" id="">
+        <input type="submit" value="check">
+        <label for="">Search:</label>
+        <input type="search" name="" id="">
+        <label for="">Color:</label>
+        <input type="color" name="" id="">
+        <label for="">Date:</label>
+        <input type="date" name="" id="" class="date">
+        <label for="">Range:</label>
+        <input type="range" name="">
+        <br>
+        <br>
+        <br>
+        <br>
+        <label for="">Audio:</label>
+        <!-- one audio -->
+        <audio src="#" controls autoplay></audio>
+        <br>
+        <br>
+        <br>
+        <!-- more audios -->
+        <audio controls>
+            <source src="#">
+            <source src="#">
+            <source src="#">
+            <source src="#">
+        </audio>
+        <br>
+        <br>
+        <br>
+        <br>
+        <label for="">Video:</label>
+        <!-- one -->
+        <video src="#" controls autoplay></video>
+        <br>
+        <br>
+        <br>
+        <!-- more -->
+        <video controls>
+            <source src="#">
+            <source src="#">
+            <source src="#">
+            <source src="#">
+        </video>
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- 提交表单 -->
+    <form method="POST" action="#">
+        <fieldset>
+            <legend>login</legend>
+            <table border="1" class="table_info">
+                <tbody>
+                    <!-- (tr>td*2)*4  >表示tr是父容器-->
+                    <tr>
+                        <td>UserName</td>
+                        <td>
+                            <input type="text" name="txtName" value="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>UserPwd</td>
+                        <td>
+                            <input type="password">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CODE</td>
+                        <td>
+                            <input type="text" name="code">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Submit">
+                            <input type="reset" value="Reset">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" value="1" name="ck_male" id="sex_male">
+                            <label for="sex_male">male</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="ch_female" id="sex_female">
+                            <label for="sex_female">female</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" name="r_sex" id="r_sex_male" checked>
+                            <label for="r_sex_male">male</label>
+                        </td>
+                        <td>
+                            <input type="radio" name="r_sex" id="r_sex_female">
+                            <label for="r_sex_female">female</label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+        <textarea name="" id="" cols="100" rows="10"></textarea>
+    </form>
+    <hr>
+    <!-- 选择框控件 单选多选 -->
+    <form method="post" action="后台处理">
+        <select name="" id="">
+            <option value="1">Sydney</option>
+            <option value="2">Melbourne</option>
+            <option value="3">Brisbane</option>
+        </select>
+        <select name="" id="" multiple>
+            <option value="1">Sydney</option>
+            <option value="2">Melbourne</option>
+            <option value="3">Brisbane</option>
+        </select>
+    </form>
+    <hr>
+    Rows
+    <p>one row</p>
+    <a href="#">href</a><strong>strong</strong><span>span</span>
+
+    <hr>
+    <!-- 内嵌 -->
+    <iframe src="https://wwww.baidu.com/" frameborder="1" width="200" height="200"></iframe>
+    <hr>
+    <!-- 其他控件 -->
+    <hr>
+    <h5>伪类选择器</h3>
+        <ul class="ul_lie">
+            <li><a href="#">index</a></li>
+            <li><a href="#">news</a></li>
+            <li><a href="#">product</a></li>
+            <li><a href="#">others</a></li>
+        </ul>
+        <input type="text" class="input_lie" value="获取焦点变色">
+        <div>
+            <span>number one</span>
+            <span>number two</span>
+            <span>number three</span>
+            <span>number four</span>
+        </div>
+        <div id="temp">
+            <p class="first_letter">
+                She is a lucky girl.
+            </p>
+        </div>
+        <hr>
+        <ol>
+            <li id="li_1">first</li>
+            <li id="li_2">second</li>
+            <li id="li_3">third</li>
+            <li id="li_4">fourth</li>
+        </ol>
+        <ul>
+            <li class="first">first</li>
+            <li id="li_second">second</li>
+            <span>
+                <li>third</li>
+            </span>
+            <li class="li_fourth">fourth</li>
+        </ul>
+        <ul class="ul_number">
+            <li><a href="#">111</a></li>
+            <li><a href="#">222</a></li>
+            <li><a href="#">333</a></li>
+            <li><a href="#">444</a></li>
+        </ul>
+        <table>
+            <thead>
+                <tr>
+                    <th><a href="#js1">name</a></th>
+                    <th><a href="#js2">age</a></th>
+                    <th><a href="#js3">phone</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jesse</td>
+                    <td>28</td>
+                    <td>0448292666</td>
+                </tr>
+                <tr>
+                    <td>Jesse</td>
+                    <td>28</td>
+                    <td>0448292666</td>
+                </tr>
+                <tr>
+                    <td>Jesse</td>
+                    <td>28</td>
+                    <td>0448292666</td>
+                </tr>
+            </tbody>
+        </table>
+        <p id="js1">NAME:please tape down your name
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </p>
+        <p id="js2">AGE:please tape down your age
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </p>
+        <p id="js3">PHNOE:please tape down your phone
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </p>
+        <hr>
+        <h5>Menu & List</h5>
+        <div>
+            <ul class="menu">
+                <li>
+                    <a href="#">index(去掉下划线)</a>
+                    <a href="#">news</a>
+                    <a href="#">content</a>
+                    <a href="#">details</a>
+                    <a href="#">help</a>
+                </li>
+            </ul>
+            <dl class="news_list">
+                <dt>NEWS</dt>
+                <dd><a href="#">news1</a></dd>
+                <dd><a href="#">news2</a></dd>
+                <dd><a href="#">news3</a></dd>
+                <dd><a href="#">news4</a></dd>
+                <dd><a href="#">news5</a></dd>
+            </dl>
+        </div>
+        <hr>
+        <h5>文字排版</h5>
+        <div class="div_skyle">
+            <label class="p_fontfamilyz">display--none,block,inline-block</label>
+        </div>
+        <p class="p_text-indent">首行缩进首行缩进首行缩进首行缩进首行缩进首行缩进首行缩进首行缩进首行缩进首行缩进首行缩进首行缩进首行缩进首行缩进首行缩进首行缩进首行缩进首行缩进首行缩进首行缩进首行缩进首行缩进首行缩进</p>
+        <p class="pre-demo">
+            按照原始编辑显示:
+            I
+            Like CSS
+            I love it....
+        </p>
+        <p class="p_overflow">不换行显示超出部分隐藏不换行显示超出部分隐藏不换行显示超出部分隐藏不换行显示超出部分隐藏不换行显示超出部分隐藏不换行显示超出部分隐藏不换行显示超出部分隐藏</p>
+        <hr>
+        <h5>News Ins</h5>
+        <div>
+            <h1 class="text_center_title">News Title</h1>
+            <p class="text_center">
+                <span>
+                    02/01/2019
+                </span>
+                <span>
+                    news class
+                </span>
+                <a href="#">favorite</a>
+            </p>
+            <hr>
+            <p class="text_details">块元素居中 margin:0
+                aotu;----details--------details--------details--------details--------details--------details--------details--------details--------details--------details--------details--------details--------details--------details--------details----</p>
+        </div>
+        <hr>
+        <h5>Float</h5>
+        <div id="div_flow">
+            Flow Away See You !!!!
+        </div>
+        <div id="div_flow2">
+            I am number two !!!!
+        </div>
+        <p>
+            Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow
+            Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow
+            Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow Flow
+        </p>
+        <div class="parent">
+            <div class="child">1</div>
+            <div class="child">2</div>
+            <div class="child">3</div>
+            <footer class="div_footer">
+                Bottom!!!
+            </footer>
+        </div>
+        <div class="div_bar">
+            <div class="top_bar">Top Bar</div>
+            <div class="main_bar">
+                <div class="left_bar">Left Bar</div>
+                <div class="content_bar">Content Bar</div>
+            </div>
+
+            <footer class="footer_bar">
+                Bottom!!!
+            </footer>
+        </div>
+        <hr>
+        
+</body>
+
+</html>

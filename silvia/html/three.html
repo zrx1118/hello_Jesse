@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 500px;
+            margin: 0 auto;
+            background: #f1cfcf;
+            overflow: hidden;
+        }
+        .inner{
+            width: 600px;
+            position: relative;
+            left: -50px;
+        }
+        .inner .inner-item{
+            width: 100px;
+            float: left;
+            margin: 0 50px;
+            text-align: center;
+            background: #f39aa1;
+        }
+        .flex-box{
+            width: 500px;
+            height: 100px;
+            margin: 0 auto;
+            background: #ecf5d9;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+        .flex-box .box-item{
+            width: 100px;
+            background: #92f7b3;
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" href="../css/three.css">
+</head>
+<body>
+    <div class="box">
+        <div class="inner">
+            <div class="inner-item">1</div>
+            <div class="inner-item">2</div>
+            <div class="inner-item">3</div>
+        </div>
+    </div>
+    <div class="flex-box">
+        <div class="box-item">111</div>
+        <div class="box-item">2222</div>
+        <div class="box-item">3333</div>
+    </div>
+    <div class="box1">
+        <div class="test"></div>
+        <div>dksjglk 95171</div>
+        <div class="font-test">0123456789  95171 fdljkd</div>
+
+        <span class="font-test shadow-test">0123456789  95171 fdljkd</span>
+    
+        <p><a href="javascript:;" class="ico-a"><i class="ico ico-list"><z></z></i>列表</a></p>
+    
+        <p><a href="javascript:;" class="ico-a"><i class="ico ico-repeat"><z></z></i>平铺</a></p>
+    
+        <p><a href="javascript:;" class="ico-a"><i class="ico ico-open"><z></z></i>打开文件夹</a></p>
+    
+        <p><a href="javascript:;" class="ico-a"><i class="ico ico-copy"><z></z></i>复制该文件</a></p>
+    
+        <p><a href="javascript:;" class="ico-a"><i class="ico ico-note"><z></z></i>注意事项</a></p>
+    
+        <p><a href="javascript:;" class="ico-a"><i class="ico ico-download"><z></z></i>下载该文件</a></p>
+    
+        <p><a href="javascript:;" class="ico-a"><i class="ico ico-share"><z></z></i>分享该文件</a></p>
+    
+        <p><a href="javascript:;" class="ico-a"><i class="ico ico-comment"><z></z></i>发表评论</a></p>
+    
+        <p><a href="javascript:;" class="ico-a"><i class="ico ico-send"><z></z></i>发送该文件</a></p>
+
+        <p><a href="javascript:;" class="ico-a"><i class="ico ico-delete"><z></z></i>发送该文件</a></p>
+    
+        <p><a href="javascript:;" class="ico-a"><i class="ico ico-cordown"></i>更多操作</a></p>
+
+        <p><a href="javascript:;" class="ico-a"><i class="ico ico-clip"></i>background-clip技能</a></p>
+    
+        <span class="char_cort">◆</span>
+        <span class="char_corb">◆</span>
+        <span class="char_corr">◆</span>
+        <span class="char_corl">◆</span>
+
+        <div class="test-shadow">
+            <input type="file" name="file" id="file">
+            <label for="file">请选择小于100k的图片</label>
+            <p id="showImage" class="show_image"><i></i></p>
+            <pre></pre>
+        </div>
+    </div>
+    <script src="../js/shadow.js"></script>
+</body>
+</html>

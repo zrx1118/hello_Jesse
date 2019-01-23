@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mouseMove</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body,html{
+            width:100%;
+            height:100%;
+        }
+        #box{
+            width: 100px;
+            height: 100px;
+            background: #f00;
+            cursor: pointer;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        var oBox = document.getElementById('box'),
+            clientW = window.innerWidth,
+            clientH = window.innerHeight,
+            ismouseMove = false,
+            offX,
+            offY;
+        window.addEventListener('resize', function () {
+            clientW = window.innerWidth,
+            clientH = window.innerHeight;
+            // clientW = document.documentElement.clientWidth || document.body.clientWidth;
+            // clientH = document.documentElement.clientHeight || document.body.clientHeight;
+            if (oBox.offsetLeft + oBox.offsetWidth > clientW) {
+                oBox.style.left = (clientW - oBox.offsetWidth) + 'px';
+            } else if (oBox.offsetTop + oBox.offsetHeight > clientH) {
+                oBox.style.top = (clientH - oBox.offsetHeight) + 'px';
+            }
+        }, false)
+        oBox.addEventListener('mousedown', function (e) {
+            var e = e || window.e;
+            offX = e.clientX - oBox.offsetLeft;
+            offY = e.clientY - oBox.offsetTop;
+            ismouseMove = true;
+        }, false);
+        document.addEventListener('mousemove', function (e) {
+            if (ismouseMove) {
+                var e = e || window.e;
+                var x = e.clientX - offX,
+                    y = e.clientY - offY;
+                if (x < 0) {
+                    x = 0;
+                } else if (x > clientW - oBox.offsetWidth) {
+                    x = clientW - oBox.offsetWidth;
+                }
+                if (y < 0) {
+                    y = 0;
+                } else if (y > clientH - oBox.offsetHeight) {
+                    y = clientH - oBox.offsetHeight;
+                }
+                oBox.style.left = x + 'px';
+                oBox.style.top = y + 'px';
+            }
+        }, false);
+        document.addEventListener('mouseup', function (e) {
+            ismouseMove = false;
+        }, false);
+        
+    </script>
+</body>
+</html>

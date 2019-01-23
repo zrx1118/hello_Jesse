@@ -1,0 +1,167 @@
+.box1{ width: 500px; margin: 0 auto; padding: 30px; background: #94e5f3; overflow: hidden;}
+
+.test{width: 10px; height: 10px; border: 1px solid #777; border-bottom-right-radius: 1px; -webkit-transform: skewY(45deg); -ms-transform: skewY(45deg); transform: skewY(45deg);}
+@font-face {
+    font-family: Georgia;
+    src: url(../font/georgia2.ttf);
+}
+.font-test{ font-family: 'Georgia', 'Serif'; }
+
+.shadow-test{ display: inline-block; margin-top: 10px; width: 100px; height: 50px; background-color: #4e68c7; color: #fff;
+    box-shadow: 1px 0px 1px #203891, 0px 1px 1px #3852b1,
+    2px 1px 1px #203891, 1px 2px 1px #3852b1,
+    3px 2px 1px #203891, 2px 3px 1px #3852b1,
+    4px 3px 1px #203891, 3px 4px 1px #3852b1,
+    5px 4px 1px #203891, 4px 5px 1px #3852b1,
+    6px 5px 1px #203891;
+}
+
+a { color: #34538b; font-size: 12px; }
+
+.ico-a{ color: #333; }
+
+.ico-a:hover { color: #4D77C6; text-decoration: none; }
+
+p { margin: 5px 0; }
+
+.ico{display: inline-block; width: 20px; height: 20px; vertical-align: -4px; }
+
+:root .ico{ background-image: none; position: relative; }
+.ico::before, .ico::after, .ico > z, .ico > z::before, .ico > z::after{ content: ''; position: absolute; }
+a:hover .ico::before, a:hover .ico::after, 
+a:hover .ico z, a:hover .ico z::before, a:hover .ico z::after,
+a.ico:hover::before, a.ico:hover::after, 
+a.ico:hover z, a.ico:hover z::before, a.ico:hover z::after { border-color: #4D77C6; }
+
+/* .ico-list{ background-position: 0 0; }
+a:hover .ico-list, a.ico-list:hover { background-position: -20px 0; } */
+
+.ico-list::before{ width: 2px; height: 8px; border-top: 2px solid #777; border-bottom: 2px solid #777; top: 5px; left: 2px;}
+.ico-list::after{ width: 2px; border-top:2px solid #777; top: 10px; left: 2px;}
+.ico-list z, .ico-list z::before, .ico-list z::after{ width: 11px; border-top: 1px solid #626262; }
+.ico-list z{ left: 6px; top: 6px; }
+.ico-list z::before{ top: 4px; }
+.ico-list z::after{ top: 9px; }
+
+/* .ico-repeat{ background-position: 0 -20px; }
+a:hover .ico-repeat, a.ico-repeat:hover{ background-position: -20px -20px; } */
+
+.ico-repeat::before, .ico-repeat::after, .ico-repeat z{ width: 3px; height: 7px; border-top: 3px solid #777; border-bottom: 3px solid #777; top: 5px; left: 3px; }
+
+.ico-repeat::before{ left: 3px; }
+.ico-repeat::after{ left: 13px; }
+.ico-repeat z{ left: 8px; }
+.ico-repeat z::before{ width: 7px; height: 3px; border-left: 3px solid #777; border-right: 3px solid #777; top: 2px; left: -5px; }
+.ico-repeat z::after{ width: 3px; border-top: 3px solid #777; top: 2px; }
+
+.ico-open::before{ width: 5px; height: 10px; border-left: 1px solid #777; border-top: 1px solid #777; top: 3px; left: 2px; }
+.ico-open::after{ width: 7px; height: 1px; border-right: 1px solid #777; border-top: 1px solid #777; top: 4px; left: 7px; }
+.ico-open z{ width: 12px; height: 8px; border: 1px solid #777; top: 6px; left: 4px; }
+
+.ico-copy::before{ width: 8px; height: 2px; border-top: 1px solid #777; border-left: 1px solid #777; border-right: 1px solid #777; top: 3px; left: 5px; }
+.ico-copy::after{ width: 2px; height: 8px; border-right: 1px solid #777; border-bottom: 1px solid #777; left: 12px; top: 6px; }
+.ico-copy z{width: 8px; height: 10px; border: 1px solid #777; top: 6px; left: 2px; }
+
+.ico-note::before{ width: 14px; height: 14px; border: 1px solid #777; border-radius: 50%; top: 3px; left: 2px;}
+.ico-note::after{ width: 2px; height: 1px; border-top: 2px solid #878787; border-bottom: 7px solid #878787; left: 9px; top: 6px; }
+
+.ico-download::before{ width: 5px; height: 1px; border-left: 5px solid #777; border-right: 5px solid #777; top: 9px; left: 2px; }
+.ico-download::after{ width: 13px; height: 8px; border-left: 1px solid #777; border-right: 1px solid #777; border-bottom: 1px solid #777; top: 10px; left: 2px; }
+.ico-download z::before{ height: 10px; border-left: 1px solid #777; left: 9px; top: 2px; }
+.ico-download z::after{ width: 1px; height: 0; border-top: 3px solid #777; border-left: 3px solid transparent !important; border-right: 3px solid transparent !important; left: 6px; top: 12px; }
+
+.ico-share::before, .ico-share::after { border-top: 1px solid #6d6d6d; left: 7px; }
+.ico-share::before { width: 6px; -webkit-transform: rotate(30deg); -ms-transform: rotate(30deg); transform: rotate(30deg); top: 15px; }
+.ico-share::after { width: 7px; -webkit-transform: rotate(-30deg); -ms-transform: rotate(-30deg); transform: rotate(-30deg); top: 8px; }
+.ico-share z, .ico-share z::before, .ico-share z::after { border: 1px solid #5d5d5d; border-radius: 4px; }
+.ico-share z { width: 4px; height: 4px; left: 2px; top: 9px; }
+.ico-share z::before, .ico-share z::after { width: 3px; height: 3px; }
+.ico-share z::before { top: -6px; left: 10px; }
+.ico-share z::after { top: 5px; left: 9px; }
+
+.ico-comment::before{ width: 5px; height: 8px; border: 1px solid #777; border-right: 0; border-top-left-radius: 2px; border-bottom-left-radius: 2px; left: 4px; top: 5px; }
+.ico-comment::after{ width: 3px; height: 8px; border: 1px solid #777; border-left: 0; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 1px;  top: 5px; left: 13px; }
+.ico-comment z::before{ width: 3px; border-top: 1px solid #777; top: 5px; left: 10px; }
+.ico-comment z::after{ width: 3px; height: 3px; border-right: 1px solid #777; border-bottom: 1px solid #777; border-bottom-right-radius: 1px; -webkit-transform: skewY(45deg); -ms-transform: skewY(45deg); transform: skewY(45deg); left: 10px; top: 13px; }
+
+.ico-send::before{width: 12px; height: 8px; border: solid #777; border-width: 0 1px 1px; top: 11px; left: 3px;}
+.ico-send::after{ width: 6px; height: 1px; border: solid #777; border-width: 0 4px; left: 3px; top: 10px; }
+.ico-send z::before { width: 5px; height: 10px; border-top: 1px solid #6d6d6d; border-left: 1px solid #6d6d6d; border-top-left-radius: 5px 10px; border-bottom-left-radius: 5px 0; left: 9px; top: 5px; }
+.ico-send z::after { width: 4px; height: 4px; border-top: 1px solid #6d6d6d; border-right: 1px solid #6d6d6d; top: 4px; left: 10px; }
+
+.ico-delete::before{ width: 3px; height: 1px; border: 1px solid #777; top: 4px; left: 7px;}
+.ico-delete::after{ width: 5px; height: 1px; border-left: 5px solid #777; border-right: 5px solid #777; top: 6px; left: 2px; }
+.ico-delete z{ width: 9px; height: 10px; border: solid #777; border-width: 0 1px 1px; border-radius: 0 0 2px 2px; top: 7px; left: 4px; }
+.ico-delete z::before{ width: 3px; height: 7px; border: solid #777; border-width: 0 1px; top: 1px; left: 2px; }
+.ico-delete z::after{ height: 7px; border-left: 1px solid #777; top: 1px; left: 4px; }
+
+
+.ico-cordown::before{ height: 2px; width: 0; border-left: 1px solid #777; box-shadow: 1px -1px #777, 2px -2px #777, 3px -3px #777, -1px -1px #777, -2px -2px #777, -3px -3px #777; top: 13px; left: 9px; }
+a:hover .ico-cordown::before{ box-shadow: 1px -1px #4D77C6, 2px -2px #4D77C6, 3px -3px #4D77C6, -1px -1px #4D77C6, -2px -2px #4D77C6, -3px -3px #4D77C6; }
+
+.ico-clip::before{ width: 11px; height: 1px; padding: 2px; border-top: 1px solid #777; border-bottom: 1px solid #777; background-color: #777; background-clip: content-box; top: 8px; left: 2px; }
+
+
+.char_corl,.char_corr,.char_cort,.char_corb{
+    display: inline-block;
+    width: 6px;
+    height: 14px;
+    line-height: 15px;
+    margin-bottom: -3px;
+    margin-right: 3px;
+    font-size: 12px;
+    font-family: '宋体';
+    overflow: hidden;
+}
+
+.char_cort{ text-indent: -5px; }
+.char_corr{ text-indent: -6px; }
+
+.char_corb,.char_cort {
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    position: relative\9; top: 4px\0; *top: -2px;
+}
+.test-shadow{ width: 100%; }
+.test-shadow input[type=file]{
+    /* width: 100%; */
+    font-size: 18px;
+    position: absolute;
+    border: none;
+}
+.test-shadow label{
+    display: block;
+    height: 100px;
+    border: 5px solid #a0b3d6;
+    background-color: #f0f3f9;
+    font: bold 18px/100px 'microsoft yahei';
+    text-align: center;
+    position: relative;
+    left: -1px;
+    top: -1px;
+    -webkit-transition: background-color .35s;
+    transition: background-color .35s;
+}
+.show_image{
+    -webkit-transition: all .35s;
+    transition: all .35s;
+}
+.show_image i {
+    display: block;
+    width: 1px;
+    height: 1px;
+    margin: -1px 0 0 -1px;
+}
+.test-shadow pre {
+    display: none;
+    font-size: 12px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    font-family: Monaco, monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tab</title>
+    <style>
+        ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .content{
+            width: 100%;
+        }
+        .tabs{
+            width: 800px;
+            height: 60px;
+            line-height: 60px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .tabs li{
+            width: 200px;
+            float: left;
+            background: #eee;
+            position: relative;
+        }
+        .tabs li:hover{
+            cursor: pointer;
+            background: #b0f0f8;
+        }
+        .tabs li.tab-item-active{
+            background: #6ae6f7;
+        }
+        .tabs li:last-child:after{
+            background: none;
+        }
+        .main{
+            width: 800px;
+            margin: 0 auto;
+        }
+        .main li{
+            display: none;
+        }
+        .main li.main-item-active{
+            width: 100%;
+            background: #96c3fd;
+            color: #0a0a0a;
+            display: block;
+        }
+        .main-item-active .content-item{
+            border-bottom: 1px dotted #242424;
+        }
+        .main-item-active .main-item-title{
+            width: 100%;
+            font-size: 20px;
+        }
+        .main-item-active .main-item-desc{
+            width: 100%;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <ul class="tabs" id="tabs">
+            <li class="">tab1</li>
+            <li class="">tab2</li>
+        </ul>
+        <ul class="main" id="main">
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+<script>
+    var urlObj = [
+            {
+                url: '../json/data_art.json',
+                domFun: function (list) {
+                    var listStr = '';
+                    listStr = '<div class="content-item">'+
+                        '<h2 class="main-item-title">'+ list.title +'</h2>'+
+                        '<p class="main-item-desc">'+ list.content +'</p>'+
+                        '</div>';
+                    return listStr;
+                }
+            }, 
+            {
+                url: '../json/data_list.json',
+                domFun: function (list) {
+                    var listStr = '';
+                    for (var n in list) {
+                        listStr += '<div class="content-item">'+
+                                '<h2 class="main-item-title">'+ list[n].title +'</h2>'+
+                                '<p class="main-item-desc">'+ list[n].desc +'</p>'+
+                                '</div>';
+                    }
+                    return listStr;
+                }
+            }
+        ];
+
+    // 数据展示
+    function dataShow (defaultIdx, urlObj, lis, mainItem) {
+        var url;
+        if (!urlObj) {
+            return ;
+        } else {
+            url = urlObj[defaultIdx].url;
+        }
+
+        if (lis[defaultIdx].flag) {
+            lis[defaultIdx].className = 'tab-item-active';
+            mainItem[defaultIdx].className = 'main-item-active';
+        } else {
+            // 数据渲染开始
+            doRequest(url, 'GET', true, {}, function (res) {
+                console.log(res.data);
+                var listStr = urlObj[defaultIdx].domFun(res.data);
+                mainItem[defaultIdx].innerHTML = listStr;
+    
+                lis[defaultIdx].className = 'tab-item-active';
+                mainItem[defaultIdx].className = 'main-item-active';
+                lis[defaultIdx].flag = true;
+            });
+
+        }
+    }
+    // tab展示
+    function tabShow (defaultIdx, urlObj) {
+        var lis = document.getElementById('tabs').getElementsByTagName('li'),
+            mainItem = document.getElementById('main').getElementsByTagName('li');
+            defaultIdx = defaultIdx || 0;
+        
+        // 初始化展示tab
+        dataShow(defaultIdx, urlObj, lis, mainItem);
+        
+        for (var i = 0, length = lis.length; i < length; i++) {
+            lis[i].num = i;
+            lis[i].onclick = function () {
+                for (var j = 0; j < length; j++) {
+                    if (this.num === j) {
+                        defaultIdx = j;
+                        dataShow(defaultIdx, urlObj, lis, mainItem);
+                    } else {
+                        mainItem[j].className = '';
+                        lis[j].className = '';
+                    }
+                }
+            }
+        }
+    }
+    tabShow(1, urlObj);
+
+
+    // 请求数据
+    function doRequest(url, type, isAsyn, resData, callback) {
+        var xhr = createXhr();
+            isAsyn = isAsyn || true;
+        if (type.toLowerCase() === 'get') {
+            url += '?';
+            for (var n in resData) {
+                url += (n +'='+ encodeURIComponent(resData[n]) + '&');
+            }
+            url = url.substr(0, url.length - 1);
+            resData = null;
+        } else {
+            resData = encodeURIComponent(JSON.stringify(resData));
+        }
+        xhr.onreadystatechange = function () {
+            if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+                if (xhr.readyState == 4) {
+                    var data = JSON.parse(decodeURIComponent(xhr.responseText));
+                    callback && callback(data);
+                }
+            }
+        }
+        xhr.open(type, url, isAsyn);
+        xhr.send(resData);
+    }
+    // 创建请求
+    function createXhr () {
+        if (window.XMLHttpRequest) {
+            return new XMLHttpRequest();
+        } else {
+            var tags = ["MSXML.XMLHttp.6.0", "MSXML.XMLHttp.3.0", "MSXML.XMLHttp", "Microsoft.XMLHTTP"];
+            for (var i = 0; i < tags.length; i++) {
+                try {
+                    return new ActiveXObject(tags[i]);
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+        }
+    }
+</script>
+</html>
