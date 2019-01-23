@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>tab</title>
+    <style>
+        ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .content{
+            width: 100%;
+        }
+        .tabs{
+            width: 800px;
+            height: 60px;
+            line-height: 60px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .tabs li{
+            width: 200px;
+            float: left;
+            background: #eee;
+            position: relative;
+        }
+        /*.tabs li:after{
+            content: '';
+            display: block;
+            width: 1px;
+            height: 30px;
+            margin-top: 15px;
+            background: #53abf3;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }*/
+        .tabs li:hover{
+            cursor: pointer;
+            background: #94ebf7;
+        }
+        .tabs li.tab-item-active{
+            background: #53e0f3;
+        }
+        .tabs li:last-child:after{
+            background: none;
+        }
+        .main{
+            width: 800px;
+            margin: 0 auto;
+        }
+        .main li{
+            display: none;
+        }
+        .main li.main-item-active{
+            width: 100%;
+            background: #8abcfc;
+            color: #0a0a0a;
+            display: block;
+        }
+        .main-item-active .content-item{
+            border-bottom: 1px dotted #242424;
+        }
+        .main-item-active .main-item-title{
+            width: 100%;
+            font-size: 20px;
+        }
+        .main-item-active .main-item-desc{
+            width: 100%;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <ul class="tabs" id="tabs">
+            <li class="">tab1</li>
+            <li class="">tab2</li>
+        </ul>
+        <ul class="main" id="main">
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+<script>
+    // 请求数据
+    function doRequest(url, type, isAsyn, resData, callback) {
+        var xhr = createXhr();
+            isAsyn = isAsyn || true;
+        if (type.toLowerCase() === 'get') {
+            url += '?';
+            for (var n in resData) {
+                url += (n +'='+ encodeURIComponent(resData[n]) + '&');
+            }
+            url = url.substr(0, url.length - 1);
+            resData = null;
+        } else {
+            resData = encodeURIComponent(JSON.stringify(resData));
+        }
+        xhr.onreadystatechange = function () {
+            if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+                if (xhr.readyState == 4) {
+                    var data = JSON.parse(decodeURIComponent(xhr.responseText));
+                    callback && callback(data);
+                }
+            }
+        }
+        xhr.open(type, url, isAsyn);
+        xhr.send(resData);
+    }
+    // 创建请求
+    function createXhr () {
+        if (window.XMLHttpRequest) {
+            return new XMLHttpRequest();
+        } else {
+            var tags = ["MSXML.XMLHttp.6.0", "MSXML.XMLHttp.3.0", "MSXML.XMLHttp", "Microsoft.XMLHTTP"];
+            for (var i = 0; i < tags.length; i++) {
+                try {
+                    return new ActiveXObject(tags[i]);
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+        }
+    }
+
+    // 数据展示
+    function dataShow (defaultIdx, lis, mainItem) {
+        switch (defaultIdx) {
+            case 0:
+                url = '../json/data_art.json';
+                break;
+            case 1:
+                url = '../json/data_list.json';
+                break;
+            default:
+                break;
+        }
+        // 数据渲染开始
+        doRequest(url, 'GET', true, {}, function (res) {
+            var list = res.data,
+                listStr = '';
+            if (list.length > 1) {
+                for (var n in list) {
+                    listStr += '<div class="content-item">'+
+                            '<h2 class="main-item-title">'+ list[n].title +'</h2>'+
+                            '<p class="main-item-desc">'+ list[n].desc +'</p>'+
+                            '</div>';
+                }
+            } else {
+                listStr = '<div class="content-item">'+
+                        '<h2 class="main-item-title">'+ list.title +'</h2>'+
+                        '<p class="main-item-desc">'+ list.content +'</p>'+
+                        '</div>';
+            }
+            mainItem[defaultIdx].innerHTML = listStr;
+
+            lis[defaultIdx].className = 'tab-item-active';
+            mainItem[defaultIdx].className = 'main-item-active';
+        });
+    }
+    // tab展示
+    function tabShow (defaultIdx) {
+        var lis = document.getElementById('tabs').getElementsByTagName('li'),
+            mainItem = document.getElementById('main').getElementsByTagName('li'),
+            url;
+            defaultIdx = defaultIdx || 0;
+        
+        // 初始化展示tab
+        dataShow(defaultIdx, lis, mainItem);
+        
+        for (var i = 0, length = lis.length; i < length; i++) {
+            lis[i].num = i;
+            lis[i].onclick = function () {
+                for (var j = 0; j < length; j++) {
+                    if (this.num === j) {
+                        defaultIdx = j;
+                        dataShow(defaultIdx, lis, mainItem);
+                    } else {
+                        mainItem[j].className = '';
+                        lis[j].className = '';
+                    }
+                }
+            }
+        }
+    }
+    tabShow(1);
+</script>
+</html>

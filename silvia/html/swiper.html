@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>swiper</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        .swiper-container{
+            width: 400px;
+            height: 110px;
+            margin: 0 auto;
+            background: #eb8c8c;
+            overflow: hidden;
+            position: relative;
+        }
+        .swiper-container-horizontal .swiper-wrapper>li{
+            float: left;
+        }
+        .swiper-container-vertical .swiper-wrapper>li{
+            
+        }
+        .swiper-wrapper{
+            position: relative;
+        }
+        .swiper-wrapper>li{
+            width: 400px;
+            height: 110px;
+        }
+        .swiper-container-horizontal .swiper-pagination{
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+        .swiper-container-vertical .swiper-pagination{
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+        .swiper-container-horizontal .swiper-pagination>span{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #e3f0f7;
+            margin:0 5px;
+            cursor: pointer;
+        }
+        .swiper-container-vertical .swiper-pagination>span{
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #e3f0f7;
+            margin:5px;
+            cursor: pointer;
+        }
+        .swiper-pagination>span.swiper-pagination-active{
+            background: #3db8fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="swiper-container" id="swiper">
+        <ul class="swiper-wrapper" id="swiperWrapper">
+            <li><img src="../img/pic1.jpg" alt="pic1"/></li>
+            <li><img src="../img/pic2.jpg" alt="pic2"/></li>
+            <li><img src="../img/pic3.jpg" alt="pic3"/></li>
+        </ul>
+        <div class="swiper-pagination" id="swiperPagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+    <script>
+        var Swiper = function (options) {
+            if (!(this instanceof Swiper)) return new Swiper(options);
+
+            var defaults = {
+                fade: true,
+                effects: 'scroll', // scroll or fade
+                direction: 'horizontal', // horizontal or vertical
+                speed: 3000,
+                autoplay: false,
+                lazyload: true,
+                slideIndex: 0
+            };
+
+            options = options || {};
+
+            for (var def in defaults) {
+                if (typeof options[def] === 'undefined') {
+                    options[def] = defaults[def];
+                }
+            }
+
+            var s = this;
+            s.options = options;
+
+            var oSwiper = document.getElementById('swiper'),
+                oSwiperWrapper = document.getElementById('swiperWrapper'),
+                oSwiperPagination = document.getElementById('swiperPagination'),
+                lis = oSwiperWrapper.getElementsByTagName('li');
+            
+            for (var i of lis) {
+                var oSpan = document.createElement('span');
+                oSwiperPagination.appendChild(oSpan);
+            }
+
+            var spanItem = oSwiperPagination.getElementsByTagName('span'),
+                soffX = oSwiper.offsetWidth,
+                soffY = oSwiper.offsetHeight;
+
+            if (s.options.direction === 'vertical') {
+                oSwiper.classList.add('swiper-container-vertical');
+                oSwiperWrapper.style.height = lis.length * soffY + 'px';
+            } else if (s.options.direction === 'horizontal') {
+                oSwiper.classList.add('swiper-container-horizontal');
+                oSwiperWrapper.style.width = lis.length * soffX + 'px';
+            }
+            
+            spanItem[s.options.slideIndex].className = 'swiper-pagination-active';
+
+            for (var i = 0, len = lis.length; i < len; i++) {
+                ;(function() {
+                    var idx = i;
+                    lis[idx].addEventListener('mousedown', function(e) {
+                        var e = e || window.e;
+                        s.offX = e.clientX;
+                        s.offY = e.clientY;
+                        s.isMousemove = true;
+                    }, false);
+
+                    lis[idx].addEventListener('mousemove', function(e) {
+                        if (s.isMousemove) {
+                            var e = e || window.e,
+                                x = e.clientX - s.offX,
+                                y = e.clientY - s.offY;
+
+                            if (s.options.direction === 'vertical') {
+                                if (y < -10) {
+                                    for (var j = 0; j < len; j++) {
+                                        
+                                        var nextIdx = idx + 1;
+                                        if (nextIdx >= len) nextIdx = 0;
+                                        
+                                        oSwiperWrapper.style.cssText = 'transform: translateY(' + y + 'px);';
+
+                                        if (nextIdx === j) {
+                                            oSwiperWrapper.style.cssText = 'transition-duration: ' + s.options.speed + 'ms; transform: translateY(' + (-nextIdx*soffY) + 'px);';
+                                            spanItem[nextIdx].className = 'swiper-pagination-active';
+
+                                        } else {
+                                            spanItem[j].className = '';
+                                        }
+
+                                        s.isMousemove = false;
+                                    }
+                                } else if (y > 10) {
+                                    for (var k = 0; k < len; k++) {
+                                        
+                                        var prevIdx = idx - 1;
+                                        if (prevIdx <= -1) prevIdx = len - 1;
+                                        
+                                        oSwiperWrapper.style.cssText = ' transform: translateY(' + y + 'px);';
+
+                                        if (prevIdx === k) {
+                                            oSwiperWrapper.style.cssText = 'transition-duration: ' + s.options.speed + 'ms; transform: translateY(' + (-prevIdx*soffY) + 'px);';
+                                            spanItem[prevIdx].className = 'swiper-pagination-active';
+
+                                        } else {
+                                            spanItem[k].className = '';
+                                        }
+
+                                        s.isMousemove = false;
+                                    }
+                                }
+                            } else if (s.options.direction === 'horizontal') {
+                                if (x < -100) {
+                                    for (var j = 0; j < len; j++) {
+
+                                        var nextIdx = idx + 1;
+                                        if (nextIdx >= len) nextIdx = 0;
+
+                                        lis[j].style.cssText = 'transform: translateX('+ j*soffX + 'px)';
+
+                                        if (nextIdx === j) {
+                                            lis[nextIdx].style.cssText = 'transition-duration: ' + s.options.speed + 'ms; transform: translateX('+ (-nextIdx*soffX) + 'px)';
+                                            spanItem[nextIdx].className = 'swiper-pagination-active';
+
+                                        } else {
+                                            spanItem[j].className = '';
+                                        }
+
+                                        s.isMousemove = false;
+                                    }
+                                } else if (x > 100) {
+                                    for (var k = 0; k < len; k++) {
+
+                                        var prevIdx = idx - 1;
+                                        if (prevIdx <= -1) prevIdx = len - 1;
+
+                                        lis[k].style.cssText = 'transform: translateX(' + k*soffX + 'px)';
+
+                                        if (prevIdx === k) {
+                                            lis[prevIdx].style.cssText = 'transition-duration: ' + s.options.speed + 'ms; transform: translateX(' + (-prevIdx*soffX) + 'px)';
+                                            spanItem[prevIdx].className = 'swiper-pagination-active';
+                                        } else {
+                                            spanItem[k].className = '';
+                                        }
+
+                                        s.isMousemove = false;
+                                    }
+                                }
+                            }
+                        }
+                    }, false);
+
+                    lis[idx].addEventListener('mouseup', function (e) {
+                        s.isMousemove = false;
+                    }, false);
+                }())
+            }
+            
+            for (var i = 0, len = spanItem.length; i < len; i++) {
+                ;(function () {
+                    var num = i;
+                    spanItem[i].addEventListener('click', function () {
+                        for (var j = 0; j < len; j++) {
+                            if (s.options.direction === 'vertical') {
+
+                                lis[j].style.cssText = 'transform: translateY(' + j*soffY + 'px)';
+
+                                if (num === j) {
+                                    lis[num].style.cssText = 'transform: translateY(' + (-num*soffY) + 'px)';
+                                    spanItem[num].className = 'swiper-pagination-active';
+                                } else {
+                                    spanItem[j].className = '';
+                                }
+                            } else if (s.options.direction === 'horizontal') {
+
+                                lis[j].style.cssText = 'transform: translateX(' + j*soffX + 'px)';
+
+                                if (num === j) {
+                                    lis[num].style.cssText = 'transform: translateX(' + (-num*soffX) + 'px)';
+                                    spanItem[num].className = 'swiper-pagination-active';
+                                } else {
+                                    spanItem[j].className = '';
+                                }
+                            }
+                        }
+                    })
+                }());
+            }
+        }
+            
+        new Swiper({
+
+        });
+    </script>
+</body>
+</html>

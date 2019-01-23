@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>swiper</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        .swiper-container{
+            width: 400px;
+            height: 110px;
+            margin: 0 auto;
+            background: #eeeded;
+            overflow: hidden;
+            position: relative;
+        }
+        .swiper-container-horizontal .swiper-wrapper>li{
+            float: left;
+        }
+        .swiper-wrapper{
+            position: relative;
+        }
+        .swiper-wrapper>li{
+            width: 400px;
+            height: 110px;
+        }
+        .swiper-container-fade-horizontal li,.swiper-container-fade-vertical li{
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition-delay: 0.5s;
+            opacity: 0;
+        }
+        .swiper-wrapper>li.swiper-slide-active{
+            transition-delay: 0.5s;
+            opacity: 1;
+        }
+        .swiper-container-horizontal .swiper-pagination,.swiper-container-fade-horizontal .swiper-pagination{
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+        .swiper-container-vertical .swiper-pagination,.swiper-container-fade-vertical .swiper-pagination{
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+        .swiper-container-horizontal .swiper-pagination>span,.swiper-container-fade-horizontal .swiper-pagination>span{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #e3f0f7;
+            margin:0 5px;
+            cursor: pointer;
+        }
+        .swiper-container-vertical .swiper-pagination>span,.swiper-container-fade-vertical .swiper-pagination>span{
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #e3f0f7;
+            margin:5px;
+            cursor: pointer;
+        }
+        .swiper-pagination>span.swiper-pagination-active{
+            background: #3db8fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="swiper-container" id="swiper">
+        <ul class="swiper-wrapper" id="swiperWrapper">
+            <li><img data-src="../img/pic1.jpg" alt="pic1"/></li>
+            <li><img data-src="../img/pic2.jpg" alt="pic2"/></li>
+            <li><img data-src="../img/pic3.jpg" alt="pic3"/></li>
+        </ul>
+        <div class="swiper-pagination" id="swiperPagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+    <div id="box"></div>
+    <script>
+        var Swiper = function (options) {
+            if (!(this instanceof Swiper)) return new Swiper(options);
+
+            var defaults = {
+                effects: 'scroll', // scroll, fade
+                direction: 'horizontal', // vertical, horizontal
+                speed: 3000,
+                autoplay: false,
+                lazyload: true,
+                slideIndex: 0
+            };
+
+            options = options || {};
+
+            for (var def in defaults) {
+                if (typeof options[def] === 'undefined') {
+                    options[def] = defaults[def];
+                }
+            }
+
+            var s = this;
+            s.options = options;
+
+            var oSwiper = document.getElementById('swiper'),
+                oSwiperWrapper = document.getElementById('swiperWrapper'),
+                oSwiperPagination = document.getElementById('swiperPagination'),
+                lis = oSwiperWrapper.getElementsByTagName('li');
+            
+            for (var i of lis) {
+                var oSpan = document.createElement('span');
+                oSwiperPagination.appendChild(oSpan);
+            }
+
+            var spanItem = oSwiperPagination.getElementsByTagName('span'),
+                len = lis.length,
+                soffX = oSwiper.offsetWidth,
+                soffY = oSwiper.offsetHeight,
+                timer;
+
+            if (s.options.effects === 'scroll') {
+                if (s.options.direction === 'vertical') {
+                    var v_height = len* soffY;
+                    oSwiper.classList.add('swiper-container-vertical');
+                    oSwiperWrapper.style.transform = 'translateY(' + (-s.options.slideIndex*soffY) + 'px)';
+                    
+                } else if (s.options.direction === 'horizontal') {
+                    var h_width = len * soffX;
+                    oSwiper.classList.add('swiper-container-horizontal');
+                    oSwiperWrapper.style.width = h_width + 'px';
+                    oSwiperWrapper.style.transform = 'translateX(' + (-s.options.slideIndex*soffX) + 'px)';
+                }
+            } else if (s.options.effects === 'fade') {
+
+                if (s.options.direction === 'vertical') {
+                    oSwiper.classList.add('swiper-container-fade-vertical');
+                } else if (s.options.direction === 'horizontal') {
+                    oSwiper.classList.add('swiper-container-fade-horizontal');
+                }
+                lis[s.options.slideIndex].className = 'swiper-slide-active'
+            }
+
+            spanItem[s.options.slideIndex].className = 'swiper-pagination-active';
+            lazyImage();
+
+            for (var i = 0; i < len; i++) {
+                ;(function () {
+                    var num = i;
+                    spanItem[i].addEventListener('mouseenter', function () {
+                        clearInterval(timer);
+                        for (var j = 0; j < len; j++) {
+                            if (s.options.effects === 'scroll') {
+                                
+                                if (num === j) {
+                                    s.options.slideIndex = num;
+                                    if (s.options.direction === 'vertical') {
+                                        oSwiperWrapper.style.transitionDuration = s.options.speed + 'ms';
+                                        oSwiperWrapper.style.transform = 'translateY(' + (-num*soffY) + 'px)';
+                                    } else if (s.options.direction === 'horizontal') {
+                                        oSwiperWrapper.style.transitionDuration = s.options.speed + 'ms';
+                                        oSwiperWrapper.style.transform = 'translateX(' + (-num*soffX) + 'px)';
+                                    }
+                                    spanItem[num].className = 'swiper-pagination-active';
+                                } else {
+                                    spanItem[j].className = '';
+                                }
+
+                            } else if (s.options.effects === 'fade') {
+                                if (num === j) {
+                                    s.options.slideIndex = num;
+                                    lis[num].className = 'swiper-slide-active';
+                                    spanItem[num].className = 'swiper-pagination-active';
+                                } else {
+                                    lis[j].className = '';
+                                    spanItem[j].className = '';
+                                }
+                            }
+                        }
+                        lazyImage();
+                    }, false);
+                    
+                    spanItem[i].addEventListener('mouseleave', function () {
+                        timer = setInterval(autoplay, 5000);
+                    }, false);
+                }());
+            }
+
+            if (s.options.autoplay) {
+                timer = setInterval(autoplay, 5000);
+            }
+
+            function autoplay() {
+                s.options.slideIndex++;
+                if (s.options.slideIndex === len) {
+                    s.options.slideIndex = 0;
+                }
+                if (s.options.effects === 'scroll') {
+                    for (var i = 0; i < len; i++) {
+                        if (s.options.slideIndex === i) {
+
+                            if (s.options.direction === 'vertical') {
+                                oSwiperWrapper.style.transitionDuration = s.options.speed + 'ms';
+                                oSwiperWrapper.style.transform = 'translateY(' + (-s.options.slideIndex*soffY) + 'px)';
+                            } else if (s.options.direction === 'horizontal') {
+                                oSwiperWrapper.style.transitionDuration = s.options.speed + 'ms';
+                                oSwiperWrapper.style.transform = 'translateX(' + (-s.options.slideIndex*soffX) + 'px)';
+                            }
+
+                            spanItem[s.options.slideIndex].className = 'swiper-pagination-active';
+                        } else {
+                            
+                            spanItem[i].className = '';
+                        }
+                    }
+
+                } else if (s.options.effects === 'fade') {
+
+                    for (var i = 0; i < len; i++) {
+                        if (s.options.slideIndex === i) {
+                            lis[s.options.slideIndex].className = 'swiper-slide-active';
+                            spanItem[s.options.slideIndex].className = 'swiper-pagination-active';
+                        } else {
+                            lis[i].className = '';
+                            spanItem[i].className = '';
+                        }
+                    }
+                }
+                lazyImage();
+            }
+
+            function lazyImage() {
+                var src = lis[s.options.slideIndex].getElementsByTagName('img')[0].getAttribute('data-src');
+                if (src) {
+                    lis[s.options.slideIndex].getElementsByTagName('img')[0].src = src;
+                    lis[s.options.slideIndex].getElementsByTagName('img')[0].removeAttribute('data-src');
+                }
+            }
+        }
+        Swiper({
+            autoplay: true,
+            direction: 'horizontal',
+            effects: 'scroll',
+        });
+
+        
+
+    </script>
+</body>
+</html>
