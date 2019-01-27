@@ -96,6 +96,10 @@ a {
 .main-login-userName,
 .main-login-pwd {
     margin: 30px 42px;
+    border: 1px solid #dddddd;
+    width: 320px;
+    height: 48px;
+    border-radius: 1px;
 }
 
 .main-login-pwd-btn,
@@ -104,6 +108,7 @@ a {
     height: 48px;
     font-size: 16px;
     color: #d9d9d9;
+    border: none
 }
 
 .main-login-cb {
