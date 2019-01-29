@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/base20151225.css">
+    <link rel="stylesheet" href="../assets/css/public20151225.css">
+    <link rel="stylesheet" href="../assets/css/account-public.css">
+    <link rel="stylesheet" href="../assets/css/public.css">
+    <script src="../assets/js/jquery-1.12.3.min.js"></script>
+    <style>
+        .dialog-wrapper{
+            width: 450px;
+            background: #fff;
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -225px;
+            overflow: hidden;
+            display: none;
+        }
+        .dialog-wrapper .dialog-header{
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+            padding-left: 20px;
+            background: #201f1f;
+            color: #666;
+            position: relative;
+        }
+        .dialog-body{
+            text-align: center; padding-top: 35px; font-size: 16px;
+        }
+        .dialog-footer{
+            padding: 40px 0;
+        }
+        .dialog-footer .confirm{
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+            height: 40px;
+            line-height: 30px;
+            text-align: center;
+            background: #b17e47;
+            color: #fff;
+            font-size: 18px;
+        }
+        .invest{
+            position: relative;
+            width: 100px;
+            height: 100px;
+        }
+        .keep-invest{
+            width: 42px;
+            height: 18px;
+            line-height: 18px;
+            text-align: center;
+            display: inline-block;
+            font-size: 12px;
+            border: 1px solid #ff9900;
+            border-radius: 2px;
+            color: #ff9900;
+            position: absolute;
+            top: 0;
+            left: 10px;
+        }
+        .keep-invest:before{
+            content: '';
+            display: block;
+            width: 3px;
+            height: 3px;
+            position: absolute;
+            top: 6px;
+            right: -3px;
+            background: #f3f3f3;
+            border-top: 1px solid #ff9900;
+            border-right: 1px solid #ff9900;
+            transform: rotate(45deg);
+        }
+        .keep{
+            width: 14px;
+            height: 14px;
+            line-height: 18px;
+            text-align: center;
+            display: inline-block;
+            font-size: 12px;
+            border: 1px solid #b17e47;
+            border-radius: 2px;
+            color: #b17e47;
+            position: relative;
+            top: 0;
+            right: -20px;
+        }
+        /* 续投功能上线气泡 */
+        .invest-list{
+            position: relative;
+            width: 100px;
+            height: 100px;
+        }
+        .keep-invest-list{
+            width: 84px;
+            height: 22px;
+            line-height: 22px;
+            text-align: center;
+            display: inline-block;
+            font-size: 12px;
+            border: 1px solid #ff9900;
+            border-radius: 4px;
+            color: #ff9900;
+            position: relative;
+            top: 2px;
+            left: 0;
+        }
+        .keep-invest-list:before{
+            content: '';
+            display: block;
+            width: 4px;
+            height: 4px;
+            position: relative;
+            bottom: -4px;
+            left: 38px;
+            background: #f3f3f3;
+            border-right: 1px solid #ff9900;
+            border-bottom: 1px solid #ff9900;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <button id="clickMe">点我弹框</button>
+    <div id="dialog" class="dialog-wrapper">
+        <div class="dialog-header">点我弹框<i class="close-x icon abs" onclick="colosenewWindow()"></i></div>
+        <div class="dialog-body">该安盈宝已申请续投，无法进行债权转让</div>
+        <div class="dialog-footer"><a href="javascript:;" class="confirm">确定</a></div>
+    </div>
+
+    <div class="invest">
+        <i class="keep-invest">可续投</i>
+    </div>
+
+    <div class="invest-list">
+        <i class="keep-invest-list">续投功能上线</i>
+    </div>
+
+    <div class="invest">
+        <i class="keep">续</i>
+    </div>
+
+    <div>
+            /member/keepInvest   页面地址（可续投tab页的数据一起）
+            /member/keepingInvest   续投中tab页
+            /member/completedKeepInvest  已完成续投
+            member/account_keepInvest.html 页面
+    </div>
+
+    <script>
+        // function showDialog(title, content, isOk, okBtnEvent, cancelStr, cancelEvent) {
+        //     var dialogBody = '<div id="dialog" class="dialog-wrapper">'+
+        //                         '<div class="dialog-header"></div>'+
+        //                         '<div class="dialog-body"></div>'+
+        //                         '<div class="dialog-footer"></div>'+
+        //                     '</div>';
+        //     title = title || '提示';
+        //     $('body').append(dialogBody);
+        //     $('.dialog-header').html(title + '<i class="icon close-btn"></i>')
+        // }
+
+        // $('#clickMe').on('click', showDialog)
+
+        
+    </script>
+</body>
+</html>
