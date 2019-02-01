@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<meta content="webkit" name="renderer">
+    	<meta content="width=1200" name="viewport">
+    	<meta content="max-age=7200" http-equiv="cache-control">
+		<title>beibeijia</title>
+		<meta name="keywords" content="beibeijia-密码重置成功">
+		<meta name="description" content="beibeijia">
+		<link rel="shortcut icon " type="images/x-icon" href="/assets/img/favorite-b64614c2fa.ico">
+		<link rel="stylesheet" type="text/css" href="/assets/css/reset-256b53ddb5.css">
+		
+	    <link rel="stylesheet" type="text/css" href="/assets/css/forget-6560644135.css">
+		
+		
+		
+		<!--[if lt IE 9]> <script type="text/javascript">;(function(){var a=["address","article","aside","audio","video","canvas","details","figcaption","figure","header","footer","menu","nav","section","summary","picture"],b=0;for(b in a)document.createElement(a[b])}())</script><![endif]-->
+	</head>
+	<body>
+		<header class="header">
+			<div class="header-content clear">
+				<div class="logo fl">
+					<img src="/assets/img/logo-5229b4078e.png" alt="logo"/>
+				</div>
+
+				<!-- 企业开户按钮 -->
+				
+				
+				<!-- 登录状态信息 -->
+				
+					<div class="login fr">
+						欢迎您,<span class="enter-text" th:each="cookie:${#httpServletRequest.getCookies()}" th:if="${cookie.getName().equals('username')}" th:text="${cookie.getValue()}"></span>
+						<a href="/user/logout" class="logout">退出</a>
+					</div>
+				
+			</div>
+		</header>
+	
+<div class="main-container">
+        <div class="forget-form-wrap reset-success-wrap">
+
+            <div class="check-reset">
+                <div class="check-reset-img">
+                    <img src="/assets/img/check-success-09089ea485.png" alt="reset-success"/>
+                </div>
+
+                <div class="check-reset-success">密码重置成功</div>
+
+                <div class="check-reset-tip">请使用新密码进行登录</div>
+
+                <a href="//www.tyfund.com" class="check-reset-next">返回首页</a>
+            </div>
+
+        </div>
+    </div>
+
+        <footer class="footer">
+            <div class="footer-main clear">
+                Copyright © 2018 版权所有 蜀ICP备16023674号-3 成都华羿恒信基金销售有限公司
+            </div>
+            <div>地址：中国（四川）自由贸易试验区成都高新区蜀锦路88号1号楼32楼2号</div>
+        </footer>
+
+        
+    </body>
+</html>

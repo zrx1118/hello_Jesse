@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<meta content="webkit" name="renderer">
+    	<meta content="width=1200" name="viewport">
+    	<meta content="max-age=7200" http-equiv="cache-control">
+		<title>beibeijia</title>
+		<meta name="keywords" content="beibeijia-账户注册">
+		<meta name="description" content="beibeijia">
+		<link rel="shortcut icon " type="images/x-icon" href="/assets/img/favorite-b64614c2fa.ico">
+		<link rel="stylesheet" type="text/css" href="/assets/css/reset-256b53ddb5.css">
+		
+	    <link rel="stylesheet" type="text/css" href="/assets/css/forget-6560644135.css">
+		
+	    <link rel="stylesheet" type="text/css" href="/assets/css/upload-6acddf6830.css">
+		
+		
+		
+		<!--[if lt IE 9]> <script type="text/javascript">;(function(){var a=["address","article","aside","audio","video","canvas","details","figcaption","figure","header","footer","menu","nav","section","summary","picture"],b=0;for(b in a)document.createElement(a[b])}())</script><![endif]-->
+	</head>
+	<body>
+		<header class="header">
+			<div class="header-content clear">
+				<div class="logo fl">
+					<img src="/assets/img/logo-5229b4078e.png" alt="logo"/>
+				</div>
+
+				<!-- 企业开户按钮 -->
+				
+				
+				<!-- 登录状态信息 -->
+				
+					<div class="login fr">
+						欢迎您,<span class="enter-text" th:each="cookie:${#httpServletRequest.getCookies()}" th:if="${cookie.getName().equals('username')}" th:text="${cookie.getValue()}"></span>
+						<a href="/user/logout" class="logout">退出</a>
+					</div>
+				
+			</div>
+		</header>
+	
+<div class="main-container">
+    <div class="register">
+        <div class="register-item transition"><span class="register-idx">1</span> 账户注册</div>
+        <div class="register-item transition"><span class="register-idx">2</span> 完善企业信息</div>
+        <div class="register-item active"><span class="register-idx">3</span> 上传企业资料</div>
+        <div class="register-item"><span class="register-idx">4</span> 完成申请</div>
+    </div>
+    <div class="reg-upload-content" id="regUpload">
+        <p class="notice">感谢选择beibeijia！为了让您顺利完成网上交易企业开户，请确认您已准备好以下<span>加盖企业公章</span>的电子版开户材料：</p>
+        <div class="upload-list">
+            <div class="upload-list-hd"><i class="line"></i>企业证件照（三证合一只需提供营业执照）</div>
+            <ul class="upload-list-bd clear">
+                <li class="upload-bd-item">
+                    <p class="name">营业执照<span>*</span></p>
+                    <div class="upload-box" data-type="business_license"  file-type="1" check="营业执照">
+                        <div class="add">
+                            <i class="icon-add"></i>
+                            <p class="text">点击上传</p>
+                        </div>
+                        
+                        <!--<div class="has-pic">
+                            <i class="icon-delete"></i>
+                            <p class="pic"><img src="/assets/img/reg-upload-img-ec1ae20f80.png"></p>
+                        </div>-->
+                    </div>
+                    <div class="operation">
+                        <a href="javascript:;" class="view" data-src="/assets/img/business_license-dbf71e0230.jpg">样例</a>
+                    </div>
+                </li>
+                <li class="upload-bd-item">
+                    <p class="name">税务登记证</p>
+                    <div class="upload-box" data-type="tax_register" file-type="9">
+                        <div class="add">
+                            <i class="icon-add"></i>
+                            <p class="text">点击上传</p>
+                        </div>
+                    </div>
+                    <div class="operation">
+                        <a href="javascript:;" class="view" data-src="/assets/img/tax_register-fc0e030494.jpg">样例</a>
+                    </div>
+                </li>
+                <li class="upload-bd-item">
+                    <p class="name">组织机构代码证</p>
+                    <div class="upload-box" data-type="org_code_certificate" file-type="10">
+                        <div class="add">
+                            <i class="icon-add"></i>
+                            <p class="text">点击上传</p>
+                        </div>
+                    </div>
+                    <div class="operation">
+                        <a href="javascript:;" class="view" data-src="/assets/img/org_code_certificate-f30a313a68.jpg">样例</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="upload-list">
+            <div class="upload-list-hd"><i class="line"></i>个人证件</div>
+            <ul class="upload-list-bd clear">
+                <li class="upload-bd-item">
+                    <p class="name">法人身份证正反面<span>*</span></p>
+                    <div class="upload-box" data-type="representative" file-type="3" check="法人身份证正反面">
+                        <div class="add">
+                            <i class="icon-add"></i>
+                            <p class="text">点击上传</p>
+                        </div>
+                    </div>
+                    <div class="operation">
+                        <a href="javascript:;" class="view" data-src="/assets/img/representative-3ba9a95bf6.jpg">样例</a>
+                    </div>
+                </li>
+                <li class="upload-bd-item">
+                    <p class="name">经办人身份证正反面<span>*</span></p>
+                    <div class="upload-box" data-type="operator" file-type="2" check="经办人身份证正反面">
+                        <div class="add">
+                            <i class="icon-add"></i>
+                            <p class="text">点击上传</p>
+                        </div>
+                    </div>
+                    <div class="operation">
+                        <a href="javascript:;" class="view" data-src="/assets/img/operator-3ba9a95bf6.jpg">样例</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="upload-list">
+            <div class="upload-list-hd"><i class="line"></i>开户业务</div>
+            <ul class="upload-list-bd clear">
+                <li class="upload-bd-item">
+                    <p class="name">银行开户证明<span>*</span></p>
+                    <div class="upload-box" data-type="open_bank_card" file-type="4" check="银行开户证明">
+                        <div class="add">
+                            <i class="icon-add"></i>
+                            <p class="text">点击上传</p>
+                        </div>
+                    </div>
+                    <div class="operation">
+                        <a href="javascript:;" class="view" data-src="/assets/img/open_bank_card-1ad0dba612.jpg">样例</a>
+                    </div>
+                </li>
+                <li class="upload-bd-item">
+                    <p class="name">基金交易业务申请表(机构)<span>*</span></p>
+                    <div class="upload-box" data-type="application_blank" file-type="6" check="基金交易业务申请表">
+                        <div class="add">
+                            <i class="icon-add"></i>
+                            <p class="text">点击上传</p>
+                        </div>
+                    </div>
+                    <div class="operation">
+                        <a href="javascript:;" class="view" data-src="/assets/img/application_blank-1d8ef4befb.jpg">样例</a>
+                        <a href="/assets/img/application_blank-373feb9f07.doc" class="download" download="基金交易账户业务申请表（机构）.doc">下载模板</a>
+                    </div>
+                </li>
+                <li class="upload-bd-item">
+                    <p class="name">基金业务委托授权书<span>*</span></p>
+                    <div class="upload-box" data-type="power_of_attorney" file-type="8" check="基金业务委托授权书">
+                        <div class="add">
+                            <i class="icon-add"></i>
+                            <p class="text">点击上传</p>
+                        </div>
+                    </div>
+                    <div class="operation">
+                        <a href="javascript:;" class="view" data-src="/assets/img/power_of_attorney-33c0606d54.jpg">样例</a>
+                        <a href="/assets/img/power_of_attorney-3110739cca.docx" class="download" download="基金业务委托授权书.docx">下载模板</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="upload-list">
+            <div class="upload-list-hd">
+                <p><i class="line"></i>其他资料</p>
+                <p class="addition">机构税收居民身份声明文件中勾选“其他非金融机构”及“仅为中国税收居民”时只需签名并盖章即可，勾选“消极非金融机构”时需填写补充控制人税收居民身份声明文件</p>
+            </div>
+            <ul class="upload-list-bd clear">
+                <li class="upload-bd-item">
+                    <p class="name">机构税收居民声明文件<span>*</span></p>
+                    <div class="upload-box" data-type="org_tax_declaration" file-type="5" check="机构税收居民声明文件">
+                        <div class="add">
+                            <i class="icon-add"></i>
+                            <p class="text">点击上传</p>
+                        </div>
+                    </div>
+                    <div class="operation">
+                        <a href="javascript:;" class="view" data-src="/assets/img/org_tax_declaration-e2d7b94042.jpg">样例</a>
+                        <a href="/assets/img/org_tax_declaration-61f1f61fb5.docx" class="download" download="机构税收居民身份声明文件.docx">下载模板</a>
+                    </div>
+                </li>
+                <li class="upload-bd-item">
+                    <p class="name">控制人税收居民身份声明文件</p>
+                    <div class="upload-box" data-type="control_tax_declaration" file-type="7">
+                        <div class="add">
+                            <i class="icon-add"></i>
+                            <p class="text">点击上传</p>
+                        </div>
+                    </div>
+                    <div class="operation">
+                        <a href="javascript:;" class="view" data-src="/assets/img/control_tax_declaration-a53b25a5ff.jpg">样例</a>
+                        <a href="/assets/img/control_tax_declaration-829c1e5942.docx" class="download" download="控制人税收居民身份声明文件.docx">下载模板</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="action-btns">
+            <a href="/user/register-info" class="back">上一步</a>
+            <a class="next" id="gonext">提交开户申请</a>
+        </div>
+        <div class="upload-tips">
+            <p class="bold">说明：</p>
+            <p>1.以上文件均需加盖公章，拍照或彩色扫描。</p>
+            <p>2.照片中文件内容及公章须完整、清晰可辨，公章须加盖在有内容处。文件填写内容如有涂改，须在涂改处加盖公章。</p>
+            <p>3.开户资料请发送至邮箱：service@tyfund.com。若有疑问，请拨打客服专线：400-8010-009</p>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="upload-mask">
+    <div class="upload-view">
+        <p class="img"><img src="/assets/img/reg-upload-view-a7da1f0617.png"></p>
+    </div>
+</div> -->
+<script type="text/javascript" src="/assets/js/lib/plupload.full.min.js"></script>
+
+        <footer class="footer">
+            <div class="footer-main clear">
+                Copyright © 2018 版权所有 蜀ICP备16023674号-3 成都华羿恒信基金销售有限公司
+            </div>
+            <div>地址：中国（四川）自由贸易试验区成都高新区蜀锦路88号1号楼32楼2号</div>
+        </footer>
+
+        
+            <script id="rjs" src="/assets/js/require.min.js" data-main="/assets/js/config-1f05a9aa03.js" data-module="reg-upload-52ad507228" async="async"></script>
+        
+    </body>
+</html>

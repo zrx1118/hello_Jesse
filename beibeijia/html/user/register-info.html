@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<meta content="webkit" name="renderer">
+    	<meta content="width=1200" name="viewport">
+    	<meta content="max-age=7200" http-equiv="cache-control">
+		<title>beibeijia</title>
+		<meta name="keywords" content="beibeijia-完善企业信息">
+		<meta name="description" content="beibeijia">
+		<link rel="shortcut icon " type="images/x-icon" href="/assets/img/favorite-b64614c2fa.ico">
+		<link rel="stylesheet" type="text/css" href="/assets/css/reset-256b53ddb5.css">
+		
+	    <link rel="stylesheet" type="text/css" href="/assets/css/forget-6560644135.css">
+		
+		
+			<link rel="stylesheet" type="text/css" href="/assets/css/flatpickr.min.css">
+		
+		
+		<!--[if lt IE 9]> <script type="text/javascript">;(function(){var a=["address","article","aside","audio","video","canvas","details","figcaption","figure","header","footer","menu","nav","section","summary","picture"],b=0;for(b in a)document.createElement(a[b])}())</script><![endif]-->
+	</head>
+	<body>
+		<header class="header">
+			<div class="header-content clear">
+				<div class="logo fl">
+					<img src="/assets/img/logo-5229b4078e.png" alt="logo"/>
+				</div>
+
+				<!-- 企业开户按钮 -->
+				
+				
+				<!-- 登录状态信息 -->
+				
+					<div class="login fr">
+						欢迎您,<span class="enter-text" th:each="cookie:${#httpServletRequest.getCookies()}" th:if="${cookie.getName().equals('username')}" th:text="${cookie.getValue()}"></span>
+						<a href="/user/logout" class="logout">退出</a>
+					</div>
+				
+			</div>
+		</header>
+	
+<div class="main-container">
+    <div class="register">
+        <div class="register-item transition"><span class="register-idx">1</span> 账户注册</div>
+        <div class="register-item active"><span class="register-idx">2</span> 完善企业信息</div>
+        <div class="register-item"><span class="register-idx">3</span> 上传企业资料</div>
+        <div class="register-item"><span class="register-idx">4</span> 完成申请</div>
+    </div>
+
+    <div class="forget-form-wrap register-info-wrap">
+
+        <div class="forget-form-tip">感谢选择beibeijia！为了让您顺利完成网上交易企业开户，请填写真实有效的企业信息。</div>
+        
+        <div class="register-form" id="formPerfect">
+        
+            <div class="register-form-title">企业信息</div>
+
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>机构名称</div>
+                </div>
+                <div class="register-form-right fr">
+                    <input class="vf-valid" type="text" name="enterprise_name" maxlength="50" placeholder="请输入机构名称" data-type="enterpriseName" data-errormsg="输入机构名称格式不正确" data-nullmsg="机构名称不能为空" id="enterprise_name">
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+            
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>证件类型</div>
+                </div>
+                <div class="register-form-right fr">
+                    <div class="vf-valid select" name="enterprise_id_type" placeholder="请选择证件类型" select="enterprise_id_type"  data-errormsg="输入证件类型格式不正确" data-nullmsg="证件类型不能为空" id="enterprise_id_type"></div>
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>证件号码</div>
+                </div>
+                <div class="register-form-right fr">
+                    <input class="vf-valid" type="text" name="enterprise_id_card" maxlength="50" placeholder="请输入证件号码" data-type="enterpriseIdCard" data-errormsg="输入证件号码格式不正确" data-nullmsg="证件号码不能为空" id="enterprise_id_card">
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>证件有效期</div>
+                </div>
+                <div class="register-form-right fr">
+                    <input class="fl vf-valid yxq" name="enterprise_valid_time" placeholder="请选择证件有效期" validDate="enterprise_valid_time" data-errormsg="证件有效期应大于当前日期" data-nullmsg="证件有效期不能为空" id="enterprise_valid_time">
+                    <div class="vf-tip"></div>
+                    <div class="long fr"><span class="remember" id="certifyRmb"></span> <span class="remember-text">长期有效</span></div>
+                </div>
+            </div>
+
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>行业</div>
+                </div>
+                <div class="register-form-right fr">
+                    <div class="vf-valid select" name="trade" placeholder="请选择行业" select="trade" data-errormsg="输入行业格式不正确" data-nullmsg="行业不能为空" id="trade"></div>
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>企业类型</div>
+                </div>
+                <div class="register-form-right fr">
+                    <div class="vf-valid select" name="cor_property" placeholder="请选择企业类型" select="cor_property" data-errormsg="输入企业类型格式不正确" data-nullmsg="企业类型不能为空" id="cor_property"></div>
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>注册资本</div>
+                </div>
+                <div class="register-form-right fr">
+                    <input class="vf-valid" type="text" name="reg_capital" maxlength="13" placeholder="请输入注册资本" data-type="regCapital" data-errormsg="输入注册资本格式不正确" data-nullmsg="注册资本不能为空" id="reg_capital">
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>注册地址</div>
+                </div>
+                <div class="register-form-right fr">
+                    <input class="vf-valid" type="text" name="reg_address" maxlength="50" placeholder="请输入注册地址" data-type="address" data-errormsg="输入注册地址格式不正确" data-nullmsg="注册地址不能为空" id="reg_address">
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>经营范围</div>
+                </div>
+                <div class="register-form-right fr">
+                    <input class="vf-valid" type="text" name="business_range" maxlength="50" placeholder="请输入经营范围" data-type="*" data-errormsg="输入经营范围格式不正确" data-nullmsg="经营范围不能为空" id="business_range">
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>办公地址</div>
+                </div>
+                <div class="register-form-right fr">
+                    <input class="vf-valid" type="text" name="address" maxlength="50" placeholder="请输入办公地址" data-type="address" data-errormsg="输入办公地址格式不正确" data-nullmsg="办公地址不能为空" id="address">
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>办公电话</div>
+                </div>
+                <div class="register-form-right fr">
+                    <input class="vf-valid" type="text" name="home_tel" maxlength="50" placeholder="请输入办公电话" data-type="homeTel" data-errormsg="输入办公电话格式不正确" data-nullmsg="办公电话不能为空" id="home_tel">
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+
+            <div class="register-form-title">银行信息</div>
+            
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>银行户名</div>
+                </div>
+                <div class="register-form-right fr">
+                    <input class="vf-valid" type="text" name="bank_account_name" maxlength="50" placeholder="请输入银行户名" data-type="enterpriseName" data-errormsg="输入银行户名格式不正确" data-nullmsg="银行户名不能为空" id="bank_account_name">
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>银行账号</div>
+                </div>
+                <div class="register-form-right fr">
+                    <input class="vf-valid" type="text" name="bank_account" maxlength="30" placeholder="请输入银行账号" data-type="bankAccount" data-errormsg="输入银行账号格式不正确" data-nullmsg="银行账号不能为空" id="bank_account">
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>开户银行</div>
+                </div>
+                <div class="register-form-right fr">
+                    <div class="vf-valid select" name="bank_id" placeholder="请输入开户银行" info="bank_id" select="bank_id" data-errormsg="输入开户银行格式不正确" data-nullmsg="开户银行不能为空" id="bank_id"></div>
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+            
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>开户行所在省份</div>
+                </div>
+                <div class="register-form-right fr">
+                    <div class="vf-valid select" name="province_code" placeholder="请选择省份" info="province_code" select="province_code" data-nullmsg="省份不能为空" id="province_code"></div>
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>开户行所在城市</div>
+                </div>
+                <div class="register-form-right fr">
+                    <div class="vf-valid select" name="city_code" placeholder="请选择城市" info="city_code" select="city_code" data-nullmsg="城市不能为空" id="city_code"></div>
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+
+            <div class="register-form-wrap extra">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>开户支行</div>
+                </div>
+                <div class="register-form-right fr">
+                    <div class="vf-valid select" name="branch_no" placeholder="请选择支行" info="branch_no" select="branch_no" data-nullmsg="支行不能为空" id="branch_no"></div>
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+
+            <div class="register-form-title">法人信息</div>
+            
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>法人姓名</div>
+                </div>
+                <div class="register-form-right fr">
+                    <input class="vf-valid" type="text" name="instrepr_name" maxlength="50" placeholder="请输入法人姓名" data-type="enterpriseName" data-errormsg="输入法人姓名格式不正确" data-nullmsg="法人姓名不能为空" id="instrepr_name">
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>法人身份证号码</div>
+                </div>
+                <div class="register-form-right fr">
+                    <input class="vf-valid" type="text" name="instreprid_card" maxlength="50" placeholder="请输入法人身份证" data-type="enterpriseIdCard" data-errormsg="输入法人身份证格式不正确" data-nullmsg="法人身份证不能为空" id="instreprid_card">
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>法人证件有效期</div>
+                </div>
+                <div class="register-form-right fr">
+                    <input class="fl vf-valid yxq" name="instrepr_valid_time" placeholder="请选择法人证件有效期" validDate="instrepr_valid_time" data-errormsg="法人证件有效期应大于当前日期" data-nullmsg="法人证件有效期不能为空" id="instrepr_valid_time">
+                    <div class="vf-tip"></div>
+                    <div class="long fr"><span class="remember" id="legalCertifyRmb"></span> <span class="remember-text">长期有效</span></div>
+                </div>
+            </div>
+
+            <div class="register-form-title">设置交易密码</div>
+            
+            <div class="register-form-wrap">
+                <div class="register-form-left fl">
+                    <div class="register-form-tel"><span>*</span>交易密码</div>
+                </div>
+                <div class="register-form-right fr">
+                    <input class="vf-valid" type="password" name="trade_password" maxlength="6" data-type="pwd" placeholder="请输入6位数字的交易密码" data-errormsg="输入交易密码格式不正确" data-nullmsg="交易密码不能为空" id="userPwd">
+                    <div class="vf-tip"></div>
+                </div>
+            </div>
+
+            <div class="register-form-info">
+                <span class="remember" id="agreenPro"></span> <span class="remember-text">我已阅读并同意</span><a href="/service-protocol">《销售服务协议》</a><a href="/invest-protocol">《投资人权益须知》</a>
+                <div class="vf-tip" id="vf-tip"></div>
+            </div>
+                
+            <div class="register-form-wrap">
+
+                <div class="register-form-next" id="gonext">下一步</div>
+                
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+        <footer class="footer">
+            <div class="footer-main clear">
+                Copyright © 2018 版权所有 蜀ICP备16023674号-3 成都华羿恒信基金销售有限公司
+            </div>
+            <div>地址：中国（四川）自由贸易试验区成都高新区蜀锦路88号1号楼32楼2号</div>
+        </footer>
+
+        
+            <script id="rjs" src="/assets/js/require.min.js" data-main="/assets/js/config-1f05a9aa03.js" data-module="register-info-3cf5e36492" async="async"></script>
+        
+    </body>
+</html>
