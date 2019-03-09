@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<meta content="webkit" name="renderer">
+    	<meta content="width=1200" name="viewport">
+    	<meta content="max-age=7200" http-equiv="cache-control">
+		<title>beibeijia</title>
+		<meta name="keywords" content="beibeijia-账户注册">
+		<meta name="description" content="beibeijia">
+		<link rel="shortcut icon " type="images/x-icon" href="../../assets/img/favorite-b64614c2fa.ico">
+		<link rel="stylesheet" type="text/css" href="../../assets/css/reset-256b53ddb5.css">
+		
+	    <link rel="stylesheet" type="text/css" href="../../assets/css/forget-6560644135.css">
+		
+		
+			<link rel="stylesheet" type="text/css" href="../../assets/css/flatpickr.min.css">
+		
+		
+		<!--[if lt IE 9]> <script type="text/javascript">;(function(){var a=["address","article","aside","audio","video","canvas","details","figcaption","figure","header","footer","menu","nav","section","summary","picture"],b=0;for(b in a)document.createElement(a[b])}())</script><![endif]-->
+	</head>
+	<body>
+		<header class="header">
+			<div class="header-content clear">
+				<div class="logo fl">
+					<img src="../../assets/img/logo-5229b4078e.png" alt="logo"/>
+				</div>
+
+				<!-- 企业开户按钮 -->
+				
+					<div class="group-enter fr">
+						<a href="/login" >企业开户</a>
+					</div>
+				
+				
+				<!-- 登录状态信息 -->
+				
+			</div>
+		</header>
+	
+<div class="main-container">
+        <div class="register">
+            <div class="register-item active"><span class="register-idx">1</span> 账户注册</div>
+            <div class="register-item"><span class="register-idx">2</span> 完善企业信息</div>
+            <div class="register-item"><span class="register-idx">3</span> 上传企业资料</div>
+            <div class="register-item"><span class="register-idx">4</span> 完成申请</div>
+        </div>
+
+        <div class="forget-form-wrap check-reset-wrap">
+
+            <div class="forget-form-tip active">*请企业开户经办人使用手机号码和真实身份信息注册，该经办人与《基金业务授权委托书》中的经办人须为同一人</div>
+            
+            <div class="user-form register-form" id="formRegister">
+                <div class="user-input-wrap">
+                    <div class="user-input-left fl">
+                        <div class="user-input-tel"><span>*</span>经办人姓名</div>
+                    </div>
+                    <div class="user-input-right fr">
+                        <input type="text" class="vf-valid" name="real_name" maxlength="16" placeholder="请输入经办人姓名" data-type="enterpriseName" data-errormsg="输入经办人姓名格式不正确" data-nullmsg="经办人姓名不能为空" id="agentName">
+                        <div class="vf-tip"></div>
+                    </div>
+                </div>
+                
+                <div class="user-input-wrap">
+                    <div class="user-input-left fl">
+                        <div class="user-input-tel"><span>*</span>身份证号</div>
+                    </div>
+                    <div class="user-input-right fr">
+                        <input type="text" class="vf-valid" name="id_card" maxlength="18" placeholder="请输入身份证号" data-type="regIdNo" data-errormsg="输入身份证号格式不正确" data-nullmsg="身份证号不能为空" id="idNumber">
+                        <div class="vf-tip"></div>
+                    </div>
+                </div>
+
+                <div class="user-input-wrap">
+                    <div class="user-input-left fl">
+                        <div class="user-input-tel"><span>*</span>证件有效期</div>
+                    </div>
+                    <div class="user-input-right fr">
+                        <input class="fl vf-valid select yxq" name="valid_time" placeholder="请选择证件有效期" validDate="valid_time" data-nullmsg="证件有效期不能为空" data-errormsg="证件有效期应大于当前日期" id="verifyCode">
+                        <div class="vf-tip" id="validTip"></div>
+                        <div class="long fr"><span class="remember" id="verifyRmb"></span> <span class="remember-text">长期有效</span></div>
+                    </div>
+                </div>
+
+                <div class="user-input-wrap">
+                    <div class="user-input-left fl">
+                        <div class="user-input-tel"><span>*</span>手机号码</div>
+                    </div>
+                    <div class="user-input-right fr">
+                        <input type="text" name="username" maxlength="11" placeholder="请输入手机号码" class="vf-valid" data-type="tel" data-errormsg="输入手机号码格式不正确" data-nullmsg="手机号码不能为空" id="agentTel">
+                        <div class="vf-tip"></div>
+                    </div>
+                </div>
+                
+                <div class="user-input-wrap">
+                    <div class="user-input-left fl">
+                        <div class="user-input-tel"><span>*</span>短信验证码</div>
+                    </div>
+                    <div class="user-input-right fr">
+                        <div>
+                            <input type="text" name="auth_code" placeholder="请输入短信验证码" maxlength="6" class="vf-valid" data-type="msgcode" data-errormsg="短信验证码错误" data-nullmsg="短信验证码不能为空" id="msgCode">
+                            <div class="vf-tip"></div>
+                            <div class="user-input-right-take" id="getMsgBtn">获取短信验证码</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user-input-wrap">
+                    <div class="user-input-left fl">
+                        <div class="user-input-tel"><span>*</span>登录密码</div>
+                    </div>
+                    <div class="user-input-right fr">
+                        <input type="password" name="password" placeholder="6-16位数字、字母和符号组合" class="vf-valid" data-type="password" data-errormsg="输入登录密码格式不正确" data-nullmsg="登录密码不能为空" id="userPwd">
+                        <div class="vf-tip"></div>
+                    </div>
+                </div>
+
+                <div class="user-form-info">
+
+                    <div class="user-input-right">
+                        <span class="remember" id="agreenPro"></span> <span class="remember-text">我已阅读并同意</span><a href="/register-protocol">《注册协议》</a>
+                    </div>
+                    <div class="vf-tip" id="vf-tip"></div>
+
+                </div>
+
+                <div class="user-form-next" id="gonext">提交注册，下一步</div>
+            </div>
+
+        </div>
+    </div>
+
+        <footer class="footer">
+            <div class="footer-main clear">
+                Copyright © 2018 版权所有 蜀ICP备16023674号-3 成都华羿恒信基金销售有限公司
+            </div>
+            <div>地址：中国（四川）自由贸易试验区成都高新区蜀锦路88号1号楼32楼2号</div>
+        </footer>
+
+        
+            <script id="rjs" src="../../assets/js/require.min.js" data-main="../../assets/js/config-1f05a9aa03.js" data-module="register-47787214a4" async="async"></script>
+        
+    </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<meta content="webkit" name="renderer">
+    	<meta content="width=1200" name="viewport">
+    	<meta content="max-age=7200" http-equiv="cache-control">
+		<title>beibeijia</title>
+		<meta name="keywords" content="beibeijia-忘记密码">
+		<meta name="description" content="beibeijia">
+		<link rel="shortcut icon " type="images/x-icon" href="../../assets/img/favorite-b64614c2fa.ico">
+		<link rel="stylesheet" type="text/css" href="../../assets/css/reset-256b53ddb5.css">
+		
+	    <link rel="stylesheet" type="text/css" href="../../assets/css/forget-6560644135.css">
+		
+		
+		
+		<!--[if lt IE 9]> <script type="text/javascript">;(function(){var a=["address","article","aside","audio","video","canvas","details","figcaption","figure","header","footer","menu","nav","section","summary","picture"],b=0;for(b in a)document.createElement(a[b])}())</script><![endif]-->
+	</head>
+	<body>
+		<header class="header">
+			<div class="header-content clear">
+				<div class="logo fl">
+					<img src="../../assets/img/logo-5229b4078e.png" alt="logo"/>
+				</div>
+
+				<!-- 企业开户按钮 -->
+				
+					<div class="group-enter fr">
+						<a href="/login" >企业开户</a>
+					</div>
+				
+				
+				<!-- 登录状态信息 -->
+				
+			</div>
+		</header>
+	
+    <div class="main-container">
+        <div class="forget-form-wrap">
+            <div class="forget-form-title">忘记登录密码</div>
+
+            <div class="user-form" id="formForget">
+
+                <div class="user-input-wrap">
+                    <div class="user-input-left fl">
+                        <div class="user-input-tel">手机号码</div>
+                    </div>
+                    <div class="user-input-right fr">
+                        <input type="text" class="vf-valid" name="mobile" placeholder="请输入手机号码" maxlength="11" data-type="tel" data-errormsg="手机号格式不正确" data-nullmsg="请填写手机号码" id="userTel">
+                        <div class="vf-tip"></div>
+                    </div>
+                </div>
+
+                <div class="user-input-wrap">
+                    <div class="user-input-left fl">
+                        <div class="user-input-tel">验证码</div>
+                    </div>
+                    <div class="user-input-right fr">
+                        <div class="user-input-right-yzm">
+                            <input type="text" class="vf-valid fl" name="captcha" placeholder="请输入验证码" data-type="*" data-errormsg="验证码不正确" data-nullmsg="请填写验证码" id="userCode">
+                            <div class="vf-tip" id="codeTip"></div>
+                            <img class="fr" src="//member.tyfund.com/captcha/captcha.jpg" id="yzmBtn" alt="code"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user-input-wrap">
+                    <div class="user-input-left fl">
+                        <div class="user-input-tel">短信验证码</div>
+                    </div>
+                    <div class="user-input-right fr">
+                        <div>
+                            <input type="text" class="vf-valid" name="auth_code" placeholder="请输入短信验证码" data-type="*" data-errormsg="短信验证码错误" data-nullmsg="短信验证码不能为空" id="userMsgCode">
+                            <div class="vf-tip" id="msgTip"></div>
+                            <div class="user-input-right-take" id="user-msgcode-btn">获取短信验证码</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user-form-next" id="gonext">下一步</div>
+
+                <div class="user-form-tip">如有疑问，联系客服：400-8010-009</div>
+
+            </div>
+        </div>
+    </div>
+
+        <footer class="footer">
+            <div class="footer-main clear">
+                Copyright © 2018 版权所有 蜀ICP备16023674号-3 成都华羿恒信基金销售有限公司
+            </div>
+            <div>地址：中国（四川）自由贸易试验区成都高新区蜀锦路88号1号楼32楼2号</div>
+        </footer>
+
+        
+            <script id="rjs" src="../../assets/js/require.min.js" data-main="../../assets/js/config-1f05a9aa03.js" data-module="forget-6949946e23" async="async"></script>
+        
+    </body>
+</html>

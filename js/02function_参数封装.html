@@ -1,0 +1,27 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //function 参数太多 解决方法:参数封装成一个对象进行传递
+      function rect(rectObj) {
+        console.log(rectObj.x + "   " + rectObj.y);
+      }
+
+      var rectObj = {
+        x: 19,
+        y: 20,
+        width: 200,
+        height: 300,
+        bgColor: "#ccc",
+        text: "Jesse"
+      };
+
+      rect(rectObj);
+    </script>
+  </body>
+</html>
