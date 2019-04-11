@@ -10,6 +10,13 @@
             margin: 0;
             padding: 0;
         }
+        :root {
+            --main-bg-color: #ececec;
+        }
+
+        body {
+            background-color: var(--main-bg-color);
+        }
         .header{
             height: 50px;
             text-align: center;
@@ -24,6 +31,20 @@
             padding: 0 10px;
             background: #f89d9d;
         }
+        /* 在父元素样式中 */
+        .component {
+            --head-color: #0ff;
+            --text-color: #080; /* header-color 并没有被设定 */
+        }
+
+        /* 在 component 的样式中： */
+        .component .head {
+            color: var(--head-color, blue); /* 此处 color 被回退到 blue */
+        }
+
+        .component .text {
+            color: var(--text-color, black);
+        }
     </style>
 </head>
 <body>
@@ -37,6 +58,103 @@
             <a class="nav-item" href="tab.html">fgdhhg</a>
         </nav>
     </header>
+    <div class="component">
+        component 的内容
+        <div class="head">header 是蓝色</div>
+        <div class="text">text 是黑色</div>
+    </div>
 </body>
+<script>
+// async function async1(){
+//     console.log('async1 start')
+//     await async2();
+//     console.log('async1 end')
+// }
 
+// async function async2(){
+//     console.log('async2')
+// }
+// console.log('script start')
+// setTimeout(function(){
+//     console.log('setTimeout')
+// }, 0)
+
+// async1();
+
+// new Promise(function(resolve) {
+//     console.log('promise1')
+//     resolve();
+// }).then(function(){
+//     console.log('promise2')
+// })
+// console.log('script end')
+
+// async function async1() {
+//     console.log('async1 start');
+//     await async2();
+//     console.log('async1 end');
+// }
+// async function async2() {
+// 	console.log('async2');
+// }
+
+// console.log('script start');
+
+// setTimeout(function() {
+//     console.log('setTimeout');
+// }, 0)
+
+// async1();
+
+// new Promise(function(resolve) {
+//     console.log('promise1');
+//     resolve();
+// }).then(function() {
+//     console.log('promise2');
+// });
+// console.log('script end');
+
+// function pars(){
+//     ['1', '2', '3'].map(parseInt)
+// }
+
+function Base(name) {
+    this.sex = 0;
+    this.name = name || 'base';
+    this.hello = function(){console.log(`my name is ${name}`)}
+}
+Base.prototype.say = function () {console.log(`name: ${this.name}`)}
+
+function Extend(name, num) {
+    // Base.call(this, name);
+    this.num = num || 0;
+}
+// var b = new Base();
+// console.log(b.say())
+Extend.prototype = new Base();
+var one = new Extend('one', 2)
+console.log(one.name, one.sex, one.num, one.say(), one.hello());
+
+function Parent() {
+    this.name = '父亲'; // 实例基本属性 (该属性，强调私有，不共享)
+    this.arr = [1]; // (该属性，强调私有)
+}
+Parent.prototype.say = function() { // -- 将需要复用、共享的方法定义在父类原型上 
+    console.log('hello')
+}
+function Child(like) {
+    this.like = like;
+}
+Child.prototype = new Parent() // 核心
+
+let boy1 = new Child()
+let boy2 = new Child()
+
+// 优点：共享了父类构造函数的say方法
+console.log(boy1.say(), boy2.say(), boy1.say === boy2.say); // hello , hello , true
+
+// 缺点1：不能传参数
+// 缺点2：
+console.log(boy1.name, boy2.name, boy1.name===boy2.name);
+</script>
 </html>

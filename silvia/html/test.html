@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ball</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        var MyApp = {};
+        MyApp.namespace = function(name) {
+            var parts = name.split('.');
+            var current = MyApp;
+            for(var i in parts) {
+                if(!current[parts[i]]) {
+                    current[parts[i]] = {};
+                }
+                current = current[parts[i]];
+            }
+        }
+    </script>
+    <script src="../assets/js/test.js"></script>
+</body>
+</html>

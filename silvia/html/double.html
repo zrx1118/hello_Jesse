@@ -7,7 +7,7 @@
     <title>布局</title>
     <style>
         .content{
-            width: 1080px;
+            width: 1100px;
             height: 200px;
             margin: 0 auto;
             position: relative;
@@ -79,7 +79,7 @@
         }*/
         /*第四种*/
         .con{
-            width: 880px;
+            width: 900px;
             height: 200px;
             padding-left: 200px;
             margin: 0 auto;
@@ -115,6 +115,122 @@
         <div class="l">left</div>
         <div class="r">right</div>
     </div>
+    <style>
+        .box1{
+            width: 1100px;
+            margin: 0 auto;
+        }
+        .container1{
+            float: left;
+            width: 100%;
+            background: #f89b9b
+        }
+        .right1{
+            margin-left: 200px;
+        }
+        .left1{
+            width: 200px;
+            float: left;
+            margin-left: -100%;
+            background: #5deef3;
+        }
+    </style>
+    <div class="box1">
+        <div class="container1">
+            <div class="right1">right</div>
+        </div>
+        <div class="left1">left</div>
+    </div>
+    <canvas id="myCanvas" width="320" height="620" style="position: absolute;top: 100px;left: 100px;background: burlywood;"></canvas>
+    <script>
+    function fn1() {
+        for(var i = 0; i<4; i++){
+            console.log(i);
+            
+            var tc = setTimeout(function(i, tc){
+                console.log(i,tc);
+                clearTimeout(tc);
+            },10, i, tc);
+        }
+    }
+    fn1();
+    function fn2() {
+        for(var i = 0; i<4; i++){
+            var tc = setInterval(function(i, tc){
+                console.log(i);
+                clearInterval(tc);
+            },10, i, tc);
+        }
+    }
+    // fn2();
+var arr = [
+    {x:0, y:0, width:320, height:200,content:'我是第一个框',color:'green'},
+    {x:0, y:204, width:320, height:200,content:'我是第二个框',color:'blue'},
+    {x:0, y:404, width:320, height:200,content:'我是第三个框',color:'yellow'}
+];
+cvs = document.getElementById('myCanvas');
+ctx = cvs.getContext('2d');
+draw();
 
+//对事件进行监听
+cvs.addEventListener('click', function(e){
+  p = getEventPosition(e);
+  //判断点击了那个矩形
+  if(p.y <= arr[0].height){
+    console.log('你点击了第一个矩形',p)
+  }
+  if(p.y>arr[0].height && p.y <= (arr[1].height+arr[1].y)){
+    console.log('你点击了第二个矩形',p)
+  }
+  if(p.y>(arr[1].height+arr[1].y) && p.y <= (arr[2].height+arr[2].y)){
+    console.log('你点击了第三个矩形',p)
+  }
+}, false);
+
+//注：使用这个函数，需要给Canvas元素的position设为absolute。
+//要判断事件对象发生的位置，事件对象e的layerX和layerY属性表示Canvas内部坐标系中的坐标
+function getEventPosition(ev){
+  var x, y;
+  if (ev.layerX || ev.layerX == 0) {
+    x = ev.layerX;
+    y = ev.layerY;
+  } else if (ev.offsetX || ev.offsetX == 0) { // Opera
+    x = ev.offsetX;
+    y = ev.offsetY;
+  }
+  return {x: x, y: y};
+}
+
+//画图像
+function draw(p){
+  var who = [];
+  ctx.clearRect(0, 0, cvs.width, cvs.height);
+  arr.forEach(function(v, i){
+    ctx.beginPath();
+    ctx.rect(v.x, v.y, v.width, v.height);
+    ctx.font="20px Georgia";
+    ctx.fillStyle=v.color;
+    ctx.fillText(v.content,0,v.y+20);
+    ctx.stroke();
+    if(p && ctx.isPointInPath(p.x, p.y)){
+      //如果传入了事件坐标，就用isPointInPath判断一下
+      //如果当前环境覆盖了该坐标，就将当前环境的index值放到数组里
+      who.push(i);
+    }
+  });
+  //根据数组中的index值，可以到arr数组中找到相应的元素。
+  return who;
+}
+
+function test(fruit) {
+    // extract conditions to array
+    const redFruits = ['apple', 'strawberry', 'cherry', 'cranberries'];
+    
+    if (redFruits.includes(fruit)) {
+        console.log('red');
+    }
+}
+test('apple')
+    </script>
 </body>
 </html>

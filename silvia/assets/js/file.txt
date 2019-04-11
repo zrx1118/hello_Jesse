@@ -1,1 +1,7 @@
-i am girl
+2. typeof的返回值    typeof运算符的返回类型为字符串，值包括如下几种：
+1. 'undefined'      --未定义的变量或值
+2. 'boolean'        --布尔类型的变量或值
+3. 'string'         --字符串类型的变量或值
+4. 'number'         --数字类型的变量或值
+5. 'object'         --对象类型的变量或值，或者null(这个是js历史遗留问题，将null作为object类型处理)
+6. 'function'       ß--函数类型的变量或值

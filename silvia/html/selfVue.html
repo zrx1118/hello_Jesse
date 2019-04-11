@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="name">
+        <h1>{{title}}</h1>
+        <input type="text" v-model="name">
+        <h2>{{name}}</h2>
+        <button v-on:click="clickMe">click me!</button>
+        <input type="text" id="iptBtn" oninput="iptClick()">
+    </div>
+</body>
+<script src="../assets/js/observer.js"></script>
+<script src="../assets/js/watcher.js"></script>
+<script src="../assets/js/compile.js"></script>
+<script src="../assets/js/selfvue.js"></script>
+<script>
+    var ele = document.getElementById('name');
+    var selfvue = new SelfVue({
+        el: '#name',
+        data: {
+            title: 'hello world',
+            name: 'silvia111'
+        },
+        methods: {
+            clickMe: function() {
+                this.title = 'hello Jesse'
+            }
+        },
+        mounted: function() {
+            window.setTimeout(() => {
+                this.title = 'hello silvia'
+            }, 1000)
+        }
+    });
+
+    window.setTimeout(function() {
+        console.log('title 值改变了')
+        selfvue.title = '你好'
+    }, 2000)
+
+    window.setTimeout(function() {
+        console.log('name 值改变了')
+        selfvue.name = 'silvia'
+    }, 2500)
+
+    function iptClick() {
+        selfvue.name = document.getElementById('iptBtn').value
+    }
+</script>
+</html>
