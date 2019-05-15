@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            display: grid;
+            grid-template-columns: 50% 50%;
+            grid-area: 50% 50%
+        }
+        .img_container{
+            width: 400px;
+            height: 400px;
+            background: url(../assets/img/zhengshuang.jpg);
+            background-size: auto 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="img_container">
+            <!-- <img src="../assets/img/linyichen.jpeg" alt=""/> -->
+        </div>
+        <!-- <div class="img_container">
+            <img src="../assets/img/denglun.jpg" alt="">
+        </div>
+        <div class="img_container">
+            <img src="../assets/img/zhengshuang.jpg" alt="">
+        </div>
+        <div class="img_container">
+            <img src="../assets/img/nazha.png" alt="">
+        </div> -->
+        <input type="text" name="" id="ipt">
+    </div>
+    <script>
+    var lockTimer = function() {
+        var time = 10;
+        var timer = setInterval(function() {
+            if (time <= 1) clearInterval(timer)
+            // console.log(time);
+            time--;
+        }, 1000)
+    }
+    lockTimer()
+
+    function debounce(fn, delay) {
+        var timer = 0;
+        return function() {
+            var self = this,
+                args = arguments;
+            if (timer) clearTimeout(timer)
+            timer = setTimeout(function() {
+                fn.apply(self, args)
+            }, delay)
+        }
+    }
+    var db1 = debounce(function(...args) {
+        console.log(args)
+    }, 1000)
+    document.getElementById('ipt').addEventListener('input', function(e) {
+        db1(e.target.value)
+    })
+
+    function tow() {
+        return n >= 0 && n < 10 ? '0' + n : '' + n;
+    }
+    function getDate() {
+        var time1 = new Date(),
+            time2 = new Date();
+    }
+    </script>
+</body>
+</html>

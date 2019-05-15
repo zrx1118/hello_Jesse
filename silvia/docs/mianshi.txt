@@ -1,0 +1,63 @@
+1、使用webpack打包，你有做哪些优化？
+    使用插件查看项目所有包及体积大小
+        使用webpack-bundle-analyzer,查看文件的大小，针对大的文件做一些修改，优化。
+        在webpack.config.js里面配置：
+            const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+            webpackConfig.plugins.push(new BundleAnalyzerPlugin());
+        在package.json中添加命令
+            "analyz": "NODE_ENV=production npm_config_report=true npm run deploy:prod"
+
+    webpack外部扩展
+        项目中引入的依赖包过于庞大；
+        业务代码集中在一块写，或者是业务代码写的比较繁琐；
+            抽离项目中公共依赖的、不常变动的、体积较大的包；
+            将一个较大的业务代码文件，拆成多个较小的文件，异步加载（或者优化业务代码）。
+            使用CDN引入资源
+    DLL方式
+        dll 全称是：dynamic link library（动态链接库）
+        dll方式也就是通过配置，告诉webpack指定库在项目中的位置，从而直接引入，不将其打包在内。
+        上面介绍的方式是将包放到cdn上，build的时候不在引入对应的包；
+        dll方式就是指定包在项目中，build的时候不在打包对应的包，使用的时候引入。
+        webpack通过webpack.DllPlugin与webpack.DllReferencePlugin两个内嵌插件实现此功能。
+2、webpack的配置有哪一些？
+    比如entry，output，
+    那么你使用过的loader和plugins有哪些？
+
+3、你是否了解过react高阶函数，比如redux的connect，
+    高阶函数的作用是直接把react的组件作为参数传给函数，react组件只负责自己的数据渲染，而页面逻辑，以及一些操作，交给高阶函数去做，
+4、react的一些生命周期函数
+    componentWillmount()
+    render()
+    componentDidmount()
+        父组件更新render，props改变：componentWillReceiveProps()
+        state改变，shouldComponentUpdate() => true; componentWillUpdate() => render() => componentDidUpdate() => componentWillUnmount
+                                          => false componentWillUnmount();
+
+5、页面的重绘和重排？
+    重绘的话，比如改变元素的color颜色，
+    重排的话，就是改变页面的结构，使页面上的一些元素需要重新计算。
+
+6、对于浏览器缓存，你了解哪些？
+    浏览器每次发起请求，都会先在浏览器缓存中查找该请求的结果以及缓存标识
+    浏览器每次拿到返回的请求结果都会将该结果和缓存标识存入浏览器缓存中
+    我们根据是否需要向服务器重新发起HTTP请求将缓存过程分为两个部分，分别是强制缓存和协商缓存。
+        强制缓存：
+            控制强制缓存的字段分别是Expires和Cache-Control，其中Cache-Control优先级比Expires高。
+            强制缓存分为内存缓存（读取时效快）和硬盘缓存（需要度存储的硬盘文件，执行I/O操作，然后重新解析该缓存内容，读取比较复杂
+            控制协商缓存的字段分别有：cache-control和expires，cache-control（值主要有：public，private（只有客户端可以缓存），no-cache，no-store，max-age）的优先级高于expries，使用的是过期多少，而expries使用的服务器时间和客户端时间的对比，不是很稳定
+        协商缓存：
+            强制缓存失效后，浏览器携带缓存标识向服务器发起请求，由服务器根据缓存标识决定是否使用缓存的过程
+            主要有两种情况，一种是服务器返回是资源没有更新，http为304的状态
+                         二种是重新返回请求结果，http为200的状态
+            控制协商缓存的字段分别有：Last-Modified / If-Modified-Since和Etag / If-None-Match，其中Etag / If-None-Match的优先级比Last-Modified / If-Modified-Since高。
+
+7、在react中，进行setSate之后，我想立马获取到这个值，有什么方式可以实现，setSate方法，可以传两个参数，第二个可以传一个回调函数，来获取state里面的值。
+
+
+
+7、vue-router中有两种路由模式，他们的区别在哪里？
+    有hash和history两种模式，
+    区别：hash路由是不请求后端接口的，但是会带#/号
+         history会请求后端接口，但是后端需要将所有的请求指到根目录之后，再由vue使用浏览器的pushSatet和replaceSate来进行路由的跳转
+8、说到原型链，你使用过的有哪些继承方法？
+    构造函数继承，原型继承，

@@ -42,6 +42,8 @@
     window.setTimeout(function() {
         console.log('title 值改变了')
         selfvue.title = '你好'
+        window.a = 1;
+    console.log(this.a);
     }, 2000)
 
     window.setTimeout(function() {
@@ -52,5 +54,7 @@
     function iptClick() {
         selfvue.name = document.getElementById('iptBtn').value
     }
+    
+    
 </script>
 </html>

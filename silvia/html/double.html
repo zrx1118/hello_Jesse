@@ -134,6 +134,29 @@
             margin-left: -100%;
             background: #5deef3;
         }
+        .iiii{
+            margin: 100px auto;
+            width: 1000px;
+            background: tan;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 0 16px #655;
+            outline: 16px solid #655;
+        }
+        .ball{
+            width: 50px;
+            height: 50px;
+            background: #5deef3;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 1;
+            animation: bounce 3s infinite;
+        }
+        @keyframes bounce{
+            60%, 80%, to { transform: translateY(-350px); }
+            70% { transform: translateY(-250px);}
+            90% {transform: translateY(-300px);}
+        }
     </style>
     <div class="box1">
         <div class="container1">
@@ -141,7 +164,14 @@
         </div>
         <div class="left1">left</div>
     </div>
-    <canvas id="myCanvas" width="320" height="620" style="position: absolute;top: 100px;left: 100px;background: burlywood;"></canvas>
+
+    <div class="iiii">
+        dddddddddfsg  hgfjgkj jjfkglhjkljl
+    </div>
+    <div class="ball">
+        111
+    </div>
+    <!-- <canvas id="myCanvas" width="320" height="620" style="position: absolute;top: 100px;left: 100px;background: burlywood;"></canvas> -->
     <script>
     function fn1() {
         for(var i = 0; i<4; i++){
@@ -231,6 +261,16 @@ function test(fruit) {
     }
 }
 test('apple')
+
+window.addEventListener('storage', function (e) {
+    console.log(e);
+    
+    if (e.key === 'ctc-msg') {
+        const data = JSON.parse(e.newValue);
+        const text = '[receive] ' + data.msg + ' —— tab ' + data.from;
+        console.log('[Storage I] receive message:', text);
+    }
+});
     </script>
 </body>
 </html>
