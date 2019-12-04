@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .div { width: 100px; height: 100px; background: #21fa8e; float: left; shape-outside:circle()}
+    .outer {background: #45f8b4;overflow: hidden;}
+    .inner {margin-top: 30px;}
+    .con {border: 3px salmon solid;display: flow-root;}
+    .con .image {width: 100px; height: 100px; background: seagreen; float: left;}
+    .con .con-main {display: flow-root;}
+    .flex {display: flex;}
+    .flex>div {width: 20px; height: 20px; text-align: center; background: #f55409; color: snow; margin: auto;}
+    .animate {display: flex;}
+    .animate .alter>div {position: relative; width: 30px;height: 30px;border-radius: 50%;background: #f069bc;animation: move 2s linear infinite;}
+    .animate .alter>div:nth-child(2) {animation-direction: alternate-reverse;}
+    .animate .alter>div:nth-child(3) {animation-direction: alternate; animation-delay: 2s;}
+    .animate .alter>div:nth-child(4) {animation-direction: reverse;}
+    .animate .rotate {width: 100px;height: 100px;background: #ec7558; margin: 20px 40px 20px 200px ;animation: rotate 2s linear infinite;}
+    .animate .rotate:hover {animation-play-state:paused}
+    .animate .conic {width: 100px;height: 100px;border-radius: 50%;background: conic-gradient(red 0 33.3%, yellow 33.3% 66.6%, green 66.6% 100%);animation: rotate 2s linear infinite;}
+    .animate img{width: 120px; height: 120px; animation: fit 4s linear infinite alternate;}
+    .animate .level>div {width: 100px;height: 100px;background: #0ff;border: 1px solid;}
+    .animate .level>div>.in {width: 70px;height: 70px;position: absolute;z-index: 2;background: #f8a88a;}
+    .animate .level>div:nth-child(1) {position: relative;z-index: 1;}
+    .animate .level>div:nth-child(2) {position: relative;z-index: 1;margin-top: -70px;margin-left: 30px;}
+    .animate .level>div:nth-child(3) {margin-top: -70px;margin-left: 60px;}
+    @keyframes move {
+        from {left: 0px;}
+        to {left: 200px;}
+    }
+    @keyframes rotate {
+        100% {transform: rotate(1turn);}
+    }
+    @keyframes fit {
+        0% {object-fit: contain;}
+        20% {object-fit: cover;}
+        40% {object-fit: fill;}
+        60% {object-fit: none;}
+        80% {object-fit: scale-down;}
+        100% {object-fit: unset;}
+    }
+    .linear {height: 50px;background: repeating-linear-gradient(90deg, #5e5efa, #5e5efa 40px, #ec6363 40px, #ec6363 80px);}
+    .linear-s {height: 50px;background: linear-gradient(90deg, #ec6363, #ec6363 40px, #5e5efa 40px, #5e5efa);background-size: 80px;}
+    .repeat {width: 100%;height: 100px;background-color: #5583ea; background-image: url('../img/momo.png');background-repeat: no-repeat;background-position: 50% 58px;background-attachment: fixed;}/*space round*/
+    .table {display: table;}
+    .table>div {width: 20px;height: 20px; display: table-cell;background: #4ac0f7;border: 1px solid;}
+    .available {padding: 10px;display: inline-block;margin: 10px; background: #73dea9; width: -webkit-fill-available; animation: filter 2s linear infinite alternate-reverse;}
+    @keyframes filter {
+        from {filter: blur(2px);}
+        to {filter: none;}
+    }
+    .fit {padding: 10px; border: 1px solid; width: fit-content; margin: auto;}
+    .custom {height: 20px; border-radius: 10px; font-size: 12px; border: 1px solid; background-image: linear-gradient(#4ac0f7, #4ac0f7);background-repeat: no-repeat; background-size: var(--precent);}
+    .speed {height: 20px;background-color: #eee;border-radius: 10px;background-image: radial-gradient(closest-side circle at var(--p), var(--c), var(--c) 100%, transparent), linear-gradient(var(--c), var(--c));background-repeat: no-repeat;background-size: 100%, var(--p);}
+    @keyframes bgsize {
+        0% {background-size: 100%, 0%;}
+        20% {background-size: 100%, 20%;}
+        40% {background-size: 100%, 40%;}
+        60% {background-size: 100%, 60%;}
+        80% {background-size: 100%, 80%;}
+        100% {background-size: 100%, 100%;}
+    }
+    </style>
+</head>
+<body>
+    <div class="speed" style="--c: #0ff; --p:20%"></div>
+    <div class="custom" style="--precent:50%">自定义属性</div>
+    <div class="fit">我是文字我是文字我是文字</div>
+    <div class="available">我是文字我是文字我是文字</div>
+    <div class="table"><div>0</div><div>1</div><div>2</div><div>3</div></div>
+    <div class="repeat"></div>
+    <div class="linear">难过却假装坚强</div>
+    <div class="linear-s"></div>
+    <div class="animate">
+        <div class="alter"><div></div><div></div><div></div><div></div></div>
+        <div class="rotate"></div>
+        <div class="conic"></div>
+        <img src="../img/pic3.jpg" alt="">
+        <div class="level"><div><div class="in"></div></div><div></div><div></div></div>
+    </div>
+    <input type="text" style="width: 100%;" size="30">
+    <div class="flex"><div>0</div><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div></div>
+    <div class="con">
+        <div class="image"></div>
+        <div class="con-main">诗歌从春鸟的啼鸣、春风春雨的吹打、春花的谢落等声音，让读者通过听觉，然后运用想象的思维方法，转换到视觉，在眼前展开一夜风雨后的春天景色，构思非常独到。诗歌语言自然朴素，通俗易懂，却又耐人寻味：不知不觉的又来到了一个春天的早晨，不知不觉的又开始了一次花开花落。思想着这一年一度的春色，人生的感慨便会油然而起，或淡或浓地萦回心头。</div>
+    </div>
+    <div>
+        <div class="div"></div>
+        <div>
+            春天的夜晚一直甜甜地睡到天亮，醒来时只听见窗外一片鸟鸣啁啾。回想起昨夜好像下过雨又刮过风，庭院石阶上一定铺满缤纷的落花。《春晓》是唐代诗人孟浩然隐居在鹿门山时所作。诗人抓住春天的早晨刚刚醒来时的一瞬间展开联想，描绘了一幅春天早晨绚丽的图景，抒发了诗人热爱春天、珍惜春光的美好心情。
+            诗歌从春鸟的啼鸣、春风春雨的吹打、春花的谢落等声音，让读者通过听觉，然后运用想象的思维方法，转换到视觉，在眼前展开一夜风雨后的春天景色，构思非常独到。诗歌语言自然朴素，通俗易懂，却又耐人寻味：不知不觉的又来到了一个春天的早晨，不知不觉的又开始了一次花开花落。思想着这一年一度的春色，人生的感慨便会油然而起，或淡或浓地萦回心头。
+            春天的夜晚一直甜甜地睡到天亮，醒来时只听见窗外一片鸟鸣啁啾。回想起昨夜好像下过雨又刮过风，庭院石阶上一定铺满缤纷的落花。《春晓》是唐代诗人孟浩然隐居在鹿门山时所作。诗人抓住春天的早晨刚刚醒来时的一瞬间展开联想，描绘了一幅春天早晨绚丽的图景，抒发了诗人热爱春天、珍惜春光的美好心情。
+            诗歌从春鸟的啼鸣、春风春雨的吹打、春花的谢落等声音，让读者通过听觉，然后运用想象的思维方法，转换到视觉，在眼前展开一夜风雨后的春天景色，构思非常独到。诗歌语言自然朴素，通俗易懂，却又耐人寻味：不知不觉的又来到了一个春天的早晨，不知不觉的又开始了一次花开花落。思想着这一年一度的春色，人生的感慨便会油然而起，或淡或浓地萦回心头。
+        </div>
+    </div>
+
+    <div>
+        诗歌从春鸟的啼鸣、春风春雨的吹打、春花的谢落等声音，让读者通过听觉，然后运用想象的思维方法，转换到视觉，在眼前展开一夜风雨后的春天景色，构思非常独到。诗歌语言自然朴素，
+        <div class="outer">
+            <div class="inner">通俗易懂，却又耐人寻味：不知不觉的又来到了一个春天的早晨，不知不觉的又开始了一次花开花落。思想着这一年一度的春色，人生的感慨便会油然而起，或淡或浓地萦回心头。</div>
+        </div>
+    </div>
+</body>
+</html>
