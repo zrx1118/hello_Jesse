@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const createCurry = (fn, ...args) => {
+            let _args = args || [];
+            let length = fn.length; // fn.length代码函数参数数量
+
+            return (...rest) => {
+                let _allArgs = _args.slice(0);  
+                // 深拷贝闭包共用对象_args，避免后续操作影响（引用类型）
+                _allArgs.push(...rest);
+                if (_allArgs.length < length) {
+                    // 参数数量不满足原始函数数量，返回curry函数
+                    return createCurry.call(this, fn, ..._allArgs);
+                } else {
+                    // 参数数量满足原始函数数量，触发执行
+                    return fn.apply(this, _allArgs);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>var</title>
+    <style>
+    .fang{font-family: 'AdobeFangsongStd-Regular';}
+    p{font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;}
+    .hei {font-family: '宋体';}
+    </style>
+</head>
+<body>
+    <div>I'm a front-end developer 我是一个前端开发者</div>
+    <div class="fang">I'm a front-end developer 我是一个前端开发者</div>
+    <div class="hei">I'm a front-end developer 我是一个前端开发者</div>
+    <p>I'm a front-end developer 我是一个前端开发者</p>
+</body>
+<script>
+// 1、变量提升
+// foo;
+// var foo = function () {
+//     console.log('foo1');
+// }
+
+// foo();
+
+// var foo = function () {
+//     console.log('foo2');
+// }
+
+// foo();
+
+// 2、函数提升
+// foo();
+// function foo() {
+//     console.log('foo1');
+// }
+
+// foo();
+
+// function foo() {
+//     console.log('foo2');
+// }
+
+// foo();
+
+// 3、声明优先级，函数 > 变量
+// foo();
+// var foo = function() {
+//     console.log('foo1');
+// }
+
+// foo();
+
+// function foo() {
+//     console.log('foo2');
+// }
+
+// foo();
+
+// 4、
+// function foo() {
+//     a = 1;
+//     console.log(a);
+// }
+
+// foo(); // ???
+
+// function bar() {
+//     console.log(a);
+// }
+// bar();
+
+// 5、
+// console.log(foo);
+
+// function foo(){
+//     console.log("foo");
+// }
+
+// var foo = 1;
+// console.log(foo);
+
+// 6、
+'use strict'
+var value = 1;
+
+var foo = {
+  value: 2,
+  bar: function () {
+    return this.value;
+  }
+}
+
+//示例1
+console.log(foo.bar());
+//示例2
+console.log((foo.bar)());
+//示例3
+console.log((foo.bar = foo.bar)());
+//示例4
+console.log((false || foo.bar)());
+//示例5
+console.log((foo.bar, foo.bar)());
+
+
+</script>
+</html>

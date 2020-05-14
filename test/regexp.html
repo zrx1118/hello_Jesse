@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+function format(num) {
+    return num.toFixed(2).replace(/\B(?=(\d{3})+\b)/g, ',').replace(/^/, '￥ ')
+}
+
+var num1 = '12345678 123456789',
+    num2 = 1888;
+var reg = /\B(?=(\d{3})+\b)/g;
+
+console.log(num1.replace(reg, ','));
+console.log(format(num2));
+function titleize (str) {
+     return str.toLowerCase().replace(/(?:^|\s)\w/g, function (c) {
+        return c.toUpperCase();
+     });
+}
+console.log( titleize('my name is epeli') );
+
+
+</script>
+</html>

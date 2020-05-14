@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>pop</title>
+    <style>
+    .detail{width: 1000px;height: 500px;position: relative;overflow: hidden;}
+    .detail img{width: 100%; height: 100%;}
+    .detail .detail-inner {position: absolute; top: 0; left: 0;background: rgba(0, 8, 12, 0.15); width: 100%; height: 60%;}
+    .detail-inner div {position: relative; width: 100%; height: 25px;}
+    .detail-inner div span {position: absolute; display: inline-block; min-width: 144px;}
+    @keyframes moveLeft {
+        from {left: 1000px;}
+        to {left: -1000px;}
+    }
+    </style>
+</head>
+<body>
+    <div class="detail">
+        <img src="./img/wangjing.jpg" alt="wangjing">
+        <div id="popwrap" class="detail-inner">
+            <div id="pop1"></div>
+            <div id="pop2"></div>
+            <div id="pop3"></div>
+            <div id="pop4"></div>
+        </div>
+    </div>
+</body>
+<script>
+var arr = ['谟谟', '谟谟下次不理我，拖出去打很多个板子', '下次是要打打他了', '谟谟超级超级坏', '很久很久都不理我', '再不理我，我要生气了', '我是祖国接班人'];
+var pop = document.getElementById('popwrap').getElementsByTagName('div');
+
+function getRandom() {
+    var random = Math.floor(Math.random()* pop.length),
+        idx = pop[random].getAttribute('idx');
+
+    if (idx < 3) {
+        return random;
+    } else {
+        delDom()
+    }
+}
+function delDom() {
+    for (var i = 0; i < pop.length; i++) {
+        var idx = pop[i].getAttribute('idx');
+        pop[i].childNodes.forEach((item) => {
+            if(item.offsetLeft < 0) {
+                pop[i].removeChild(item);
+                pop[i].setAttribute('idx', --idx);
+            }
+        })
+    }
+}
+function barrage() {
+    var random = getRandom(),
+        index = Math.floor(Math.random()* arr.length),
+        oSpan = document.createElement('span');
+
+    if (random >= 0) {
+        var idx = pop[random].getAttribute('idx');
+        idx ? pop[random].setAttribute('idx', ++idx) : pop[random].setAttribute('idx', 1)
+        oSpan.style.cssText = "animation: moveLeft 20s infinite;";
+        oSpan.innerHTML = arr[index];
+        pop[random].appendChild(oSpan)
+    } else {
+        return
+    }
+}
+setInterval(() => {
+    barrage();
+}, 1000);
+</script>
+</html>

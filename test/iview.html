@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo</title>
+    <link rel="stylesheet" href="https://unpkg.com/view-design/dist/styles/iview.css">
+    <style>
+        .center input {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <h1>销售计划编制</h1> -->
+        <Card dis-hover :bordered="false" class="wrapper-query">
+            <p slot="title">
+                <Icon type="ios-search"></Icon>查询条件
+            </p>
+            <div slot="extra">
+                <ButtonGroup>
+                    <Button @click="search" icon="md-search">搜索</Button>
+                    <Button @click="reset" icon="md-refresh">重置</Button>
+                </ButtonGroup>
+            </div>
+            <Row :gutter="16">
+                <Col span="5" class="maxWidth">
+                    <Select v-model="tableQueryAttr.customerEnableCode" @on-change="selectSearch" placeholder="选择客户">
+                        <Option
+                            v-for="(item,index) in customerArr"
+                            :key="index"
+                            :label="item.customerName"
+                            :value="item.customerEnableCode"
+                        ></Option>
+                    </Select>
+                </Col>
+                <Col span="5" class="maxWidth">
+                    <Input
+                        v-model="tableQueryAttr.commodityName"
+                        placeholder="物料名称"
+                        @on-search="search"
+                        search
+                    >
+                        <Button @click="search" slot="append" icon="ios-search"></Button>
+                    </Input>
+                </Col>
+                <Col span="5" class="maxWidth">
+                    <DatePicker
+                        type="month"
+                        v-model="tableQueryAttr.dateTimeStr"
+                        @on-change="dateChange"
+                        placeholder="年月"
+                    ></DatePicker>
+                </Col>
+            </Row>
+        </Card>
+        <Card dis-hover :bordered="false">
+            <p slot="title">
+                <Icon type="md-list"></Icon>销售计划明细
+            </p>
+            <div slot="extra">
+                <ButtonGroup>
+                    <Button
+                        @click="edit"
+                        v-has="btnRightList.salePlanUpdate"
+                        icon="ios-download-outline"
+                    >编制</Button>
+                </ButtonGroup>
+            </div>
+            <erp-table
+                @on-page-no-change="pageNoChange"
+                @on-page-size-change="pageSizeChange"
+                :erpTableTitle="erpTableTitle"
+                :erpTableData="erpTableData"
+                :tableLoading="tableLoading"
+                :total="total"
+                :current="tableComAttr.pageNo"
+                ref="managerTable"
+            ></erp-table>
+        </Card>
+        <!-- width="960" -->
+        <Modal
+            v-model="modalShowFlag"
+            :title="modalTitle"
+            :loading="modelLoading"
+            :mask-closable="maskClosable"
+            fullscreen
+        >
+            <Card :border="false">
+                <Row :gutter="12" class="mb10">
+                    <Col span="6">客户:{{customerName}}</Col>
+                    <Col
+                        span="6"
+                    >计划版本:{{new Date().getFullYear()+'-'+Number(new Date().getMonth()+1)}}</Col>
+                    <Col span="6">截止日期:{{endTime}}</Col>
+                </Row>
+                <Table :data="tablePlan" border :columns="titlePlan" :loading="tableLoading"></Table>
+            </Card>
+            <div slot="footer">
+                <Button @click="modalCancel">取消</Button>
+                <Button type="primary" @click="modalOk">保存</Button>
+                <Button type="warning" @click="submit">提交</Button>
+                <Button type="error" @click="back">撤销</Button>
+            </div>
+        </Modal>
+    </div>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue@2.5.17/dist/vue.min.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/view-design/dist/iview.min.js"></script>
+<script>
+    //id生成工具 这个不用看 示例而已 模拟后台返回的id
+    function getSaveCustomerList(params) {
+        return {
+            status: '0'
+        }
+    }
+    function salePlanUpdate(obj) {
+
+    }
+    //主要内容
+    var app = new Vue({
+        el: "#app",
+        // mixins: [tableMixin],
+        // components: { ErpTable },
+        // computed: {
+        //     ...mapGetters(['salerId'])
+        // },
+        data () {
+            return {
+                tableQueryAttr: {
+                    customerEnableCode: '',
+                    commodityName: '',
+                    dateTimeStr: ''
+                },
+                tableLoading: false,
+                customerName: '', // 当前用户
+                endTime: '',
+                tablePlan: [], // 销售计划数据
+                customerArr: [], // 客户下拉数据
+                month: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                inputArr: [],
+                erpTableTitle: [
+                    {
+                        title: '销售组织',
+                        align: 'center',
+                        minWidth: 100,
+                        key: 'saleOrganizationName'
+                    },
+                    {
+                        title: '客户',
+                        align: 'center',
+                        minWidth: 180,
+                        key: 'customerName'
+                    },
+                    {
+                        title: '计划年月',
+                        align: 'center',
+                        minWidth: 100,
+                        // key: 'updateTime'
+                        render: (h, params) => {
+                            return h(
+                                'span',
+                                {},
+                                this.getDate(params.row.updateTime).slice(0, 7)
+                            );
+                        }
+                    },
+                    {
+                        title: '到货年月',
+                        align: 'center',
+                        minWidth: 100,
+                        // key: 'planDate'
+                        render: (h, params) => {
+                            const date = this.getDate(params.row.planDate);
+                            return h('span', {}, date.slice(0, 7));
+                        }
+                    },
+                    {
+                        title: '物料名称',
+                        align: 'center',
+                        minWidth: 100,
+                        key: 'commodityName'
+                    },
+                    {
+                        title: '品牌',
+                        align: 'center',
+                        minWidth: 100,
+                        key: 'brandName'
+                    },
+                    {
+                        title: '数量',
+                        align: 'center',
+                        minWidth: 100,
+                        key: 'planNum'
+                    }
+                ],
+                // 销售计划表头
+                titlePlan: [],
+                btnRightList: {
+                    salePlanUpdate: ''
+                },
+                erpTableData: '',
+                total: '',
+                tableComAttr: {
+                    pageNo: 0
+                },
+                modalTitle: '',
+                modelLoading: false,
+                maskClosable: '',
+                modalShowFlag: '',
+                modalCancel: '',
+            };
+        },
+        created () {
+            this.getCustomer();
+        },
+        methods: {
+            search() {
+
+            },
+            
+            selectSearch() {
+
+            },
+            pageNoChange() {},
+            pageSizeChange() {},
+            // 保存销售计划
+            async modalOk () {
+                let params = [];
+                let curMon = new Date().getMonth() + 1;
+                this.tablePlan.forEach(item => {
+                    let monKey = null;
+                    if (Number(curMon + item.purchaseCycle) > 12) {
+                        monKey = 'key' + Number(curMon + item.purchaseCycle - 12);
+                    } else {
+                        monKey = 'key' + Number(curMon + item.purchaseCycle);
+                    }
+                    if (item.salePlans.length) {
+                        item.salePlans.forEach(planItem => {
+                            params.push({
+                                id: planItem.id,
+                                customerCommodityId: item.customerCommodityId,
+                                planNum: item[monKey]['planNum'],
+                                purchaseCycle: item.purchaseCycle
+                            });
+                        });
+                    } else {
+                        params.push({
+                            customerCommodityId: item.customerCommodityId,
+                            planNum: item[monKey]['planNum'],
+                            purchaseCycle: item.purchaseCycle
+                        });
+                    }
+                });
+                const res = await salePlanUpdate({ salePlans: params });
+                if (res.status === this.code) {
+                    this.todoOver(res.msg);
+                } else {
+                    this.changeLoading();
+                }
+            },
+            // 编制销售计划
+            edit () {
+                this.addItem('销售计划编制');
+                // 根据当前月生成表头
+                this.createTitle();
+                // 获取可编排计划物料列表
+                this.getEditList();
+
+                // 获取客户名
+                let e = this.customerArr.filter(item => {
+                    return (
+                        item.customerEnableCode ===
+                        this.tableQueryAttr.customerEnableCode
+                    );
+                });
+                if (e.length) {
+                    this.customerName = e[0].customerName;
+                }
+            },
+
+            // 根据月份创建表头
+            createTitle () {
+                // let mon = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+                let cur = new Date().getMonth();
+                // let cur = 2;
+                let index = this.month.findIndex(item => {
+                    return item === cur;
+                });
+                let startIndex = null;
+                let step = Number(index) - 5;
+                if (step < 0) {
+                    startIndex = Number(cur) + 12 - 6;
+                } else {
+                    startIndex = step;
+                }
+
+                let partOne = this.month.slice(startIndex, startIndex + 6);
+                let partTwo = [];
+                let pre = [];
+                if (partOne.length < 6) {
+                    partTwo = this.month.slice(0, 6 - Number(partOne.length));
+                    pre = partOne.concat(partTwo);
+                } else {
+                    pre = partTwo.concat(partOne);
+                }
+
+                let nextOne = this.month.slice(index + 1, index + 7);
+                let nextTwo = [];
+                let next = [];
+                if (nextOne.length < 6) {
+                    nextTwo = this.month.slice(0, 6 - Number(nextOne.length));
+                    next = nextOne.concat(nextTwo);
+                } else {
+                    next = nextTwo.concat(nextOne);
+                }
+
+                let monArr = pre.concat(next);
+
+                this.titlePlan = [];
+                this.titlePlan.push(
+                    {
+                        title: '物料名称',
+                        align: 'center',
+                        minWidth: 120,
+                        key: 'commodityName'
+                    },
+                    {
+                        title: '物料品牌',
+                        align: 'center',
+                        minWidth: 120,
+                        key: 'brandName'
+                    }
+                );
+
+                monArr.forEach(item => {
+                    let curMon = new Date().getMonth() + 1;
+                    this.titlePlan.push({
+                        title: item + '月',
+                        align: 'center',
+                        minWidth: 80,
+                        render: (h, params) => {
+                            let temp = null;
+                            const purchaseCycle = params.row.purchaseCycle;
+                            if (
+                                (purchaseCycle === 0 &&
+                                item === purchaseCycle + curMon) ||
+                                (purchaseCycle &&
+                                (item === purchaseCycle + curMon ||
+                                item === purchaseCycle + curMon - 12))
+                            ) {
+                                temp = h('Input', {
+                                    props: {
+                                        type: 'number',
+                                        value: Number(
+                                            (params.row['key' + item] &&
+                                                params.row['key' + item]['planNum']) ||
+                                                0
+                                        ),
+                                        disabled:
+                                            params.row['key' + item] &&
+                                            (params.row['key' + item].status ===
+                                            2 ||
+                                            params.row['key' + item].status ===
+                                            3)
+                                    },
+                                    class: { center: true },
+                                    on: {
+                                        'on-blur': val => {
+                                            const value = Number(val.target.value);
+                                            params.row['key' + item] = {};
+                                            params.row['key' + item]['planNum'] = value;
+                                            this.tablePlan[params.index] =
+                                                params.row;
+                                            this.tablePlan[params.index]['key' + item]['planNum'] = value;
+                                        }
+                                    }
+                                });
+                            } else {
+                                if (params.row['key' + item]) {
+                                    temp = h(
+                                        'span',
+                                        {},
+                                        params.row['key' + item]['planNum']
+                                    );
+                                }
+                            }
+                            return temp;
+                        }
+                    });
+                });
+            },
+
+            // 获取可编排计划物料列表
+            async getEditList () {
+                const params = {
+                    customerEnableCode: this.tableQueryAttr.customerEnableCode
+                };
+                this.tableLoading = true;
+                const res = await salePlanEditList(params);
+                if (res.status === this.code) {
+                    this.tableLoading = false;
+                    this.endTime = this.getDate(res.content.endTime);
+                    this.tablePlan = res.content.commoditySalePlans;
+                    let curMon =
+                        new Date().getMonth() + 1;
+                    this.tablePlan.forEach((item, index) => {
+                        if (item.purchaseCycle && item.purchaseCycle < 5) {
+                            this.$set(
+                                this.tablePlan[index],
+                                'key' + Number(curMon + item.purchaseCycle),
+                                Object.assign({ planNum: '' }, item)
+                            );
+                        }
+                        if (item.purchaseCycle === 0) {
+                            this.$set(this.tablePlan[index], 'key' + Number(curMon), Object.assign({ planNum: 0 }));
+                        }
+                        if (item.salePlans.length) {
+                            item.salePlans.forEach((planItem, planIndex) => {
+                                let key =
+                                    'key' +
+                                    Number(
+                                        new Date(planItem.planDate).getMonth() + 1
+                                    );
+                                this.$set(this.tablePlan[index], key, planItem);
+                            });
+                        }
+                    });
+                }
+            },
+            dateChange (value) {
+                this.tableQueryAttr.dateTimeStr = value;
+            },
+            // 提交
+            async submit () {
+                let params = [];
+                let curMon = new Date().getMonth() + 1;
+                this.tablePlan.forEach((item, index) => {
+                    let monKey = null;
+                    if (Number(curMon + item.purchaseCycle) > 12) {
+                        monKey = 'key' + Number(curMon + item.purchaseCycle - 12);
+                    } else {
+                        monKey = 'key' + Number(curMon + item.purchaseCycle);
+                    }
+                    params.push(this.tablePlan[index][monKey]);
+                });
+                const res = await salePlanSubmit({ salePlans: params });
+                if (res.status === this.code) {
+                    // this.$Message.success(res.msg);
+                    this.todoOver(res.msg);
+                }
+            },
+
+            // 撤回
+            async back () {
+                let params = [];
+                let curMon = new Date().getMonth() + 1;
+                this.tablePlan.forEach((item, index) => {
+                    let monKey = null;
+                    if (Number(curMon + item.purchaseCycle) > 12) {
+                        monKey = 'key' + Number(curMon + item.purchaseCycle - 12);
+                    } else {
+                        monKey = 'key' + Number(curMon + item.purchaseCycle);
+                    }
+                    params.push(this.tablePlan[index][monKey]);
+                });
+                const res = await salePlanReturn({ salePlans: params });
+                if (res.status === this.code) {
+                    this.todoOver(res.msg);
+                }
+            },
+
+            reset () {
+                this.tableComAttr.pageNo = 1;
+                resetObj(this.tableQueryAttr, 1);
+                if (this.customerArr.length) {
+                    this.tableQueryAttr.customerEnableCode = this.customerArr[0].customerEnableCode;
+                }
+                this.getTableList();
+            },
+            // 获取客户下拉数据
+            async getCustomer () {
+                const params = {
+                    salerId: this.salerId
+                };
+                const res = await getSaveCustomerList(params);
+                if (res.status === this.code) {
+                    this.customerArr = res.content;
+                    if (res.content.length) {
+                        this.tableQueryAttr.customerEnableCode =
+                            res.content[0].customerEnableCode;
+                        this.getTableList();
+                    }
+                }
+            },
+
+            // 初始化数据
+            getTableList () {
+                // if (this.tableQueryAttr.customerEnableCode) {
+                // console.log(this.tableQueryAttr.dateTimeStr);
+                this.getTableListFn(async call => {
+                    const params = Object.assign(
+                        {},
+                        this.tableComAttr,
+                        this.tableQueryAttr,
+                        {
+                            dateTimeStr:
+                                this.tableQueryAttr.dateTimeStr &&
+                                new Date(this.tableQueryAttr.dateTimeStr).valueOf()
+                        }
+                    );
+                    const res = await salePlanList(params);
+                    call(res);
+                });
+            // }
+            }
+        }
+    });
+</script>
+</body>
+
+</html>
