@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="content" style="height:150px;line-height:150px;text-align:center; color: #fff;background-color:#ccc;font-size:80px;"></div>
+</body>
+<script>
+    let num = 1;
+    let content = document.getElementById('content');
+
+    function count() {
+        content.innerHTML = num++;
+    };
+
+    // 时间戳版本
+    function throttle(fn, wait) {
+        let first = Date.now();
+        return function() {
+            let last = Date.now(),
+                self = this,
+                args = arguments;
+            if ((last - first) > wait) {
+                first = Date.now();
+                fn.apply(self, args)
+            }
+        }
+    }
+
+    // 定时器版本
+    function throttle(fn, wait) {
+        let timeout;
+        return function() {
+            let self = this,
+                args = arguments;
+            if (!timeout) {
+                timeout = setTimeout(() => {
+                    timeout = null
+                    fn.apply(self, args)
+                }, wait)
+            }
+        }
+    }
+
+    /**
+     * 节流函数
+     * @param fn 需要节流的函数
+     * @param wait 节流等待的时间(ms)
+     * @param type 1 时间戳版 2 定时器版
+    */
+    function throttle(fn, wait, type = '1') {
+        let first = Date.now(), timeout;
+        return function() {
+            let last = Date.now(),
+                _this = this,
+                args = arguments;
+
+            if (type == '1') {
+                if ((last - first) > wait) {
+                    first = Date.now();
+                    fn.apply(_this, args)
+                }
+            } else {
+                if (!timeout) {
+                    timeout = setTimeout(() => {
+                        timeout = null;
+                        fn.apply(_this, args)
+                    }, wait)
+                }
+            }
+        }
+    }
+    content.onmousemove = throttle(count, 1000);
+</script>
+</html>

@@ -56,6 +56,17 @@
 		scene.add( cube );
 		// 物体 end
 
+		// 物体
+		var geom = new THREE.BoxGeometry(4, 4, 4);
+		var mater = new THREE.MeshLambertMaterial( { color: 0xffff00} );
+		var cuber = new THREE.Mesh( geom, mater );
+        cuber.position.x = 8;
+		cuber.position.y = 2;
+		cuber.position.z = 0;
+        cuber.castShadow = true;
+		scene.add( cuber );
+		// 物体 end
+
         // 光源
         var spotLight = new THREE.SpotLight( 0xffffff );
         spotLight.position.set( -40, 60, -10 );
@@ -68,6 +79,10 @@
  
             cube.rotation.x += 0.01;
             cube.rotation.y += 0.01;
+			renderer.render( scene, camera );
+			
+			cuber.rotation.x += 0.01;
+            cuber.rotation.y += 0.01;
             renderer.render( scene, camera );
 
             requestAnimationFrame( animate );
