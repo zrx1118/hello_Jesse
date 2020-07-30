@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>结构化数据</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <!--[if lte IE 6]>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-ie6.css">
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/ie.css">
+    <![endif]-->
+    <link rel="stylesheet" href="leipi.style.css">
+    <style type="text/css">
+        button {
+            margin: 1px;
+        }
+    </style>
+    <script type="text/javascript" src="../dialogs/internal.js"></script>
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script type="text/javascript">
+        function createElement(type, name)
+        {
+            var element = null;
+            try {
+                element = document.createElement('<'+type+' name="'+name+'">');
+            } catch (e) {}
+            if(element==null) {
+                element = document.createElement(type);
+                element.name = name;
+            }
+            return element;
+        }
+    </script>
+</head>
+<body style="">
+<div class="well">
+    <div class="alert alert-info">基本元素</div>
+    <p id="a" style="line-height:25px;margin: 0 0 10px;">
+        <button class="btn btn-info btn-small" lang="xm">姓名</button>
+        <button class="btn btn-info btn-small" lang="xb">性别</button>
+        <button class="btn btn-info btn-small" lang="csny">出生年月</button>
+        <button class="btn btn-info btn-small" lang="nl">年龄</button>
+        <button class="btn btn-info btn-small" lang="zy">职 业</button>
+        <button class="btn btn-info btn-small" lang="gzdw">工作单位</button>
+        <button class="btn btn-info btn-small" lang="kb">科别</button>
+        <button class="btn btn-info btn-small" lang="bq">病区</button>
+        <button class="btn btn-info btn-small" lang="ch">床号</button>
+        <button class="btn btn-info btn-small" lang="zyh">住院号</button>
+        <button class="btn btn-info btn-small" lang="gsz">供史者</button>
+        <button class="btn btn-info btn-small" lang="hy">婚   姻</button>
+        <button class="btn btn-info btn-small" lang="csd">出生地</button>
+        <button class="btn btn-info btn-small" lang="mz">民    族</button>
+        <button class="btn btn-info btn-small" lang="ryrq">入院日期</button>
+        <button class="btn btn-info btn-small" lang="jlrq">记录日期</button>
+    </p>
+    <div class="alert alert-info">章节元素</div>
+    <p id="b" style="line-height:25px;">
+        <button class="btn btn-info btn-small" lang="gms">过敏史章节</button>
+        <button class="btn btn-info btn-small" lang="zs">主诉章节</button>
+        <button class="btn btn-info btn-small" lang="xbs">现病史章节</button>
+        <button class="btn btn-info btn-small" lang="jws">既往史章节</button>
+        <button class="btn btn-info btn-small" lang="tgjc">体格检查章节</button>
+        <button class="btn btn-info btn-small" lang="sysjc">实验室检验章节</button>
+        <button class="btn btn-info btn-small" lang="zdjg">诊断结果</button>
+        <button class="btn btn-info btn-small" lang="bzyjms">辩证依据描述</button>
+        <button class="btn btn-info btn-small" lang="fzzf">治则治法</button>
+    </p>
+</div>
+
+<script type="text/javascript">
+    var thePlugins = "struct";
+    $(document).ready(function () {
+       $.each($("button"),function (i, obj) {
+           $(obj).on("click",function () {
+               writeHtml($(this));
+           })
+       });
+       
+       function writeHtml(obj) {
+           var oNode = createElement('span','cxNewField');
+           oNode.setAttribute('title',obj.text());
+           oNode.setAttribute("cxfield", obj.attr("lang"))
+           oNode.setAttribute('cxplugins',thePlugins);
+           oNode.setAttribute("contenteditable","false");
+           oNode.setAttribute("class","struct_field");
+
+           var labelNode = createElement("label");
+           labelNode.setAttribute("cxtype", "bgtext");
+           labelNode.setAttribute("style", "color: rgb(128, 128, 128)");
+           labelNode.textContent = obj.text();
+
+           var startNode = createElement("span");
+           startNode.setAttribute("cxtype", "start");
+           startNode.setAttribute("style", "color: rgb(0, 0, 255)");
+           startNode.textContent = "[";
+
+           var endNode = createElement("span");
+           endNode.setAttribute("cxtype", "end");
+           endNode.setAttribute("style", "color: rgb(0, 0, 255)");
+           endNode.textContent = "]";
+
+           oNode.appendChild(startNode);
+           oNode.appendChild(labelNode);
+           oNode.appendChild(endNode);
+
+           editor.execCommand('insertHtml',oNode.outerHTML);
+           dialog.close(false);
+       }
+    });
+</script>
+</body>
+</html>

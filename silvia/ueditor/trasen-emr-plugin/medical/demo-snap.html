@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>snap.svg demo</title>
+    <script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="snap.svg.js"></script>
+    <script type="text/javascript" src="medical.js"></script>
+    <style>
+        text
+        {
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+            //cursor :pointer; // 鼠标手型
+            cursor :default;
+        }
+        svg:hover {
+            border: 1px solid #000;
+        }
+        svg line { //去毛边
+            shape-rendering: crispEdges;
+        }
+    </style>
+</head>
+<body>
+<svg id="menstrual_1" height="60" width="60" version="1.1"></svg>
+<svg id="menstrual_2" height="60" width="60" version="1.1"></svg>
+<svg id="menstrual_3" height="60" width="60" version="1.1"></svg>
+<svg id="menstrual_4" height="60" width="60" version="1.1"></svg>
+<svg id="pupil" height="60" width="60" version="1.1"></svg>
+<svg id="projection" height="60" width="60" version="1.1"></svg>
+<svg id="fetal_heart_map" height="60" width="80" version="1.1"></svg>
+<br/>
+<svg id="permanent_tooth" height="60" width="140"></svg>
+<svg id="deciduous_teeth" height="60" width="140"></svg>
+<svg id="scale" height="60" width="500"></svg>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        medical.menstrual_1("menstrual_1", ["16","55","7","30"]);
+        medical.menstrual_2("menstrual_2", ["11","55","7","30"]);
+        medical.menstrual_3("menstrual_3", ["12","07","22","55"]);
+        medical.menstrual_4("menstrual_4", ["15","30","8"]);
+        medical.pupil("pupil",["+", "+", "o", ">", "o", "3", "5"]);
+        medical.projection("projection",["12", "", "32", "42", "52", "62", "72", "82", "92"]);
+        medical.fetal_heart_map("fetal_heart_map", ["12","1121","","12", "12", "12"]);
+        medical.permanent_tooth("permanent_tooth",["8","7","6","5","4","3","2","1","1","2","3","4","5","6","7","8","8","7","6","5","4","3","2","1","1","2","3","4","5","6","7","8"]);
+        medical.deciduous_teeth("deciduous_teeth",["Ⅴ","Ⅳ","Ⅲ","Ⅱ","Ⅰ","Ⅰ","Ⅱ","Ⅲ","Ⅳ","Ⅴ","Ⅴ","Ⅳ","Ⅲ","Ⅱ","Ⅰ","Ⅰ","Ⅱ","Ⅲ","Ⅳ","Ⅴ"]);
+        medical.scale("scale","6.5");
+
+        $.each($("svg"), function (i, obj) {
+            $(obj).on("mousedown",function (e) {
+                var width = $(this).attr("width");
+                var height = $(this).attr("height");
+                var clientX = e.clientX;
+                var clientY = e.clientY;
+                $(document).on("mousemove",function (e) {
+                    var curX = e.pageX;
+                    var curY = e.pageY;
+                    $(obj).attr("width",width - clientX + curX);
+                    $(obj).attr("height", height - clientY + curY);
+                });
+            });
+        });
+        $(document).on("mouseup",function () {
+            $(this).off("mousemove");
+        })
+    });
+</script>
+</html>

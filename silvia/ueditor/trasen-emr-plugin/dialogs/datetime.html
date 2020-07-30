@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>日期域</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+    <meta name="generator" content="www.leipi.org" />
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <!--[if lte IE 6]>
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-ie6.css">
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/ie.css">
+    <![endif]-->
+    <link rel="stylesheet" href="../css/leipi.style.css">
+    <script type="text/javascript" src="../../dialogs/internal.js"></script>
+    <script type="text/javascript">
+function createElement(type, name)
+{
+    var element = null;
+    try {
+        element = document.createElement('<'+type+' name="'+name+'">');
+    } catch (e) {}
+    if(element==null) {
+        element = document.createElement(type);
+        element.name = name;
+    }
+    return element;
+}
+    </script>
+</head>
+<body>
+<div class="content">
+    <table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th><span>控件名称</span><span class="label label-important">*</span></th>
+            <th><span>类型</span></th>
+        </tr>
+        <tr>
+            <td>
+                <input id="orgname" type="text" placeholder="必填项"/>
+            </td>
+            <td>
+                <select  id="emr-format" class="span7">
+                    <optgroup label="----常用日期格式----">
+                        <option value="yyyy-MM-dd HH:mm:ss">当前日期+时间 [ 1997-01-01 12:30:00 ]</option>
+                        <option value="yyyy-MM-dd">当前日期 [ 1997-01-01 ]</option>
+                    </optgroup>
+                </select>
+            </td>
+        </tr>
+    </thead>
+    <tbody id='itemAttr'>
+        <tr>
+            <th><span>控件样式</span></th>
+            <th><span>可见性</span></th>
+        </tr>
+        <tr>
+            <td>
+                宽 <input id="orgwidth" type="text" value="150" class="input-small span1" placeholder="auto"/> px
+                &nbsp;&nbsp;
+                字体大小 <input id="orgfontsize" type="text" value="" class="input-small span1" placeholder="auto"/> px
+
+            </td>
+            <td>
+                <label class="checkbox"> <input id="orghide" type="checkbox"> 隐藏 </label>
+            </td>
+        </tr>
+    </tbody>
+
+    </table>
+</div>
+<script type="text/javascript">
+var oNode = null,thePlugins = 'emr_datetime';
+window.onload = function() {
+    if( UE.plugins[thePlugins].editdom ) {
+        oNode = UE.plugins[thePlugins].editdom;
+        //TODO:编辑时数据回填
+        var format = oNode.getAttribute("emr-format");
+        $G('emr-format').value = format;
+    }
+}
+
+dialog.oncancel = function () {
+    if( UE.plugins[thePlugins].editdom ) {
+        delete UE.plugins[thePlugins].editdom;
+    }
+};
+dialog.onok = function (){
+ /*   if ( $G('orgname').value == '' ) {
+        alert('控件名称不能为空');
+        return false;
+    }*/
+    if(oNode ){
+      domUtils.remove(oNode,false);  //删除当前控件，再创建一个新的
+      delete UE.plugins[thePlugins].editdom;
+    }
+    editor.execCommand('insertHtml',getNewDom().outerHTML);
+};
+/**
+ * dom对象获取
+ * 根据界面设置，创建新dom节点
+ */
+getNewDom = function () {
+  var format = $G('emr-format').value;
+  var node = createElement('span');
+  node.setAttribute('class', 'time_choose not_edited');
+  node.setAttribute('emr-plugins', 'emrFieldElement');
+  node.setAttribute('emr-type', 'emr_datetime');
+  node.setAttribute('emr-field', '');
+  node.setAttribute('emr-value', '');
+  node.setAttribute('emr-deleteable', 'false');
+  node.setAttribute('emr-editable', 'false');
+  node.setAttribute('emr-edited', 'false');
+  node.setAttribute('emr-events', 'click|change');
+  node.setAttribute('emr-format', format);
+
+  var childNode1 = createElement('em');
+  childNode1.setAttribute('emr-ignore', '1');
+  childNode1.innerHTML = '[';
+  node.appendChild(childNode1);
+
+  var childNode2 = createElement('label');
+/*  childNode2.setAttribute('type', 'text');
+  childNode2.setAttribute('class', 'input');
+  childNode2.setAttribute('placeholder', format);*/
+  childNode2.innerHTML = format;
+  node.appendChild(childNode2);
+
+  var childNode3 = createElement('em');
+  childNode3.setAttribute('emr-ignore', '1');
+  childNode3.innerHTML = ']';
+  node.appendChild(childNode3);
+
+  return node;
+}
+</script>
+</body>
+</html>

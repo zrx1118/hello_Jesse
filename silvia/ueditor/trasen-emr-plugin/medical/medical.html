@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>医学表达式</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <!--[if lte IE 6]>
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap-ie6.css">
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/ie.css">
+    <![endif]-->
+    <link rel="stylesheet" href="../../formdesign/leipi.style.css">
+    <style type="text/css">
+        button {
+            margin: 1px;
+        }
+    </style>
+    <script type="text/javascript" src="../../dialogs/internal.js"></script>
+    <script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="snap.svg.js"></script>
+    <script type="text/javascript" src="medical.js"></script>
+    <script type="text/javascript">
+        function createElement(type, name)
+        {
+            var element = null;
+            try {
+                element = document.createElement('<'+type+' name="'+name+'">');
+            } catch (e) {}
+            if(element==null) {
+                element = document.createElement(type);
+                element.name = name;
+            }
+            return element;
+        }
+    </script>
+</head>
+<body style="">
+<div class="well">
+    <div class="alert alert-info">基本元素</div>
+    <p id="a" style="line-height:25px;margin: 0 0 10px;">
+        <button class="btn btn-info btn-small" lang="menstrual_1">月经史表达式一</button>
+        <button class="btn btn-info btn-small" lang="menstrual_2">月经史表达式二</button>
+        <button class="btn btn-info btn-small" lang="menstrual_3">月经史表达式三</button>
+        <button class="btn btn-info btn-small" lang="menstrual_4">月经史表达式四</button>
+        <button class="btn btn-info btn-small" lang="pupil">瞳孔图表达式</button>
+        <button class="btn btn-info btn-small" lang="projection">光学定位图</button>
+        <button class="btn btn-info btn-small" lang="fetal_heart_map">胎心图</button>
+        <button class="btn btn-info btn-small" lang="permanent_tooth">恒牙牙位图</button>
+        <button class="btn btn-info btn-small" lang="deciduous_teeth">乳牙牙位</button>
+        <button class="btn btn-info btn-small" lang="scale">标尺</button>
+    </p>
+    <!-- svg临时画布区域，用于根据内容动态计算大小 -->
+    <div style="position: absolute;z-index: 999;top: -500px;">
+        <svg id="menstrual_1" height="60" width="60" version="1.1"></svg>
+        <svg id="menstrual_2" height="60" width="60" version="1.1"></svg>
+        <svg id="menstrual_3" height="60" width="60" version="1.1"></svg>
+        <svg id="menstrual_4" height="60" width="60" version="1.1"></svg>
+        <svg id="pupil" height="60" width="60" version="1.1"></svg>
+        <svg id="projection" height="60" width="60" version="1.1"></svg>
+        <svg id="fetal_heart_map" height="60" width="80" version="1.1"></svg>
+        <br/>
+        <svg id="permanent_tooth" height="60" width="140"></svg>
+        <svg id="deciduous_teeth" height="60" width="140"></svg>
+        <svg id="scale" height="60" width="500"></svg>
+    </div>
+</div>
+<script type="text/javascript">
+    var thePlugins = "medical";
+    $(document).ready(function () {
+        $.each($("button"),function (i, obj) {
+            $(obj).on("click",function () {
+                writeHtml($(this));
+            })
+        });
+
+        function writeHtml(obj) {
+            var lang = obj.attr("lang");
+            var svg = null;
+            switch (lang){
+                case "menstrual_1":
+                    svg = medical.menstrual_1("menstrual_1", ["16","55","7","30"]);break;
+                case "menstrual_2":
+                    svg = medical.menstrual_2("menstrual_2", ["11","55","7","30"]);break;
+                case "menstrual_3":
+                    svg = medical.menstrual_3("menstrual_3", ["12","07","22","55"]);break;
+                case "menstrual_4":
+                    svg = medical.menstrual_4("menstrual_4", ["15","30","8"]);break;
+                case "pupil":
+                    svg = medical.pupil("pupil",["+", "+", "o", ">", "o", "3", "5"]);break;
+                case "projection":
+                    svg = medical.projection("projection",["12", "", "32", "42", "52", "62", "72", "82", "92"]);break;
+                case "fetal_heart_map":
+                    svg = medical.fetal_heart_map("fetal_heart_map", ["12","1121","","12", "12", "12"]);break;
+                case "permanent_tooth":
+                    svg = medical.permanent_tooth("permanent_tooth",["8","7","6","5","4","3","2","1","1","2","3","4","5","6","7","8","8","7","6","5","4","3","2","1","1","2","3","4","5","6","7","8"]);
+                    break;
+                case "deciduous_teeth":
+                    svg = medical.deciduous_teeth("deciduous_teeth",["Ⅴ","Ⅳ","Ⅲ","Ⅱ","Ⅰ","Ⅰ","Ⅱ","Ⅲ","Ⅳ","Ⅴ","Ⅴ","Ⅳ","Ⅲ","Ⅱ","Ⅰ","Ⅰ","Ⅱ","Ⅲ","Ⅳ","Ⅴ"]);
+                    break;
+                case "scale":
+                    svg = medical.scale("scale","8");break;
+            }
+            if(svg){
+                var oNode = createElement("span", "leipiNewField");
+                oNode.setAttribute('title',obj.text());
+                oNode.setAttribute("cxtype", lang);
+                oNode.setAttribute('name','cxNewField');
+                oNode.setAttribute('cxplugins',thePlugins);
+                oNode.setAttribute('contenteditable','false');
+                var childNode = svg.node;
+                childNode.removeAttribute("id");
+                oNode.appendChild(childNode);
+                editor.execCommand('insertHtml',oNode.outerHTML);
+            }
+            dialog.close(false);
+        }
+    });
+</script>
+</body>
+</html>

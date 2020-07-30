@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>页边距设置</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+    <meta name="generator" content="www.leipi.org" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <!--[if lte IE 6]>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-ie6.css">
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/ie.css">
+    <![endif]-->
+    <link rel="stylesheet" href="leipi.style.css">
+    <script type="text/javascript" src="../dialogs/internal.js"></script>
+</head>
+<body>
+
+<div class="well">
+    <p>
+        <button type="button" onclick="leipiDialog.exec('pagedistance', 1);" class="btn btn-info btn-small">默认:上1cm,下1cm,左1cm,右1cm</button>
+        <button type="button" onclick="leipiDialog.exec('pagedistance', 3);" class="btn btn-info btn-small">常规:上2.54cm,下2.54cm,左2.54cm,右2.54cm</button>
+        <button type="button" onclick="leipiDialog.exec('pagedistance', 2);" class="btn btn-info btn-small">常规:上1.27cm,下1.27cm,左1.27cm,右1.27cm</button>
+    </p>
+</div>
+<script type="text/javascript">
+    // self
+    var leipiDialog = {
+        exec : function (method, params) {
+            editor.execCommand(method, params);
+            dialog.close(true);
+        }
+    };
+</script>
+</body>
+</html>

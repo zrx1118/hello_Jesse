@@ -1,0 +1,560 @@
+.nav_tit .nav_fir.active {
+    background: #fff url(../images/iocn.png) no-repeat;
+    color: #2B579A;
+    background-position: -9px -123px;
+}
+.template_inp {
+	line-height: 32px;
+    width: 130px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    outline: none;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 0 10px;
+    box-sizing:border-box;
+}
+.bottom_btn .sec_btn{
+	border:1px solid #2B579A;
+	background:#fff;
+	color:#2B579A;
+}
+.table_fa table td{
+	font-size:12px;
+}
+.medical_record_box {
+    position: absolute;
+    top: 100px;
+    bottom: 40px;
+    width: 100%;
+    overflow-y: auto;
+}
+.new_template {
+	width: 500px;
+	height:656px;
+}
+.surplus {
+	line-height:40px;
+	background:#f5f5f5;
+	padding-left:25px;
+}
+
+.tmp_top_btn {
+	padding: 5px 10px;
+}
+.tmp_top_btn span {
+	color: #777;
+}
+.tmp_top_tab {
+	line-height: 36px;
+	background:#eeeeee;
+	border-top:1px solid #e3e3e3;
+}
+.tmp_top_tab>a {
+	display:inline-block;
+	padding: 0 20px;
+	color: #333;
+}
+.tmp_top_tab>a.active {
+	background:#fff;
+}
+/*右侧的插入弹出*/
+.tmp_insert {
+	width: 200px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    box-shadow: -3px 8px 17px #ddd;
+    z-index: 99;
+    background: #fff;
+}
+.tmp_bomb {
+	display:none;
+}
+.tmp_bomb .tit{
+	font-weight: bold;
+    padding: 0 10px;
+    line-height: 40px;
+    height: 40px;
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+}
+.tmp_bomb .new_dellect {
+    float: right;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: url(../images/iocn.png) no-repeat;
+    background-size: 1440px 980px;
+    background-position: -338px -268px;
+    cursor: pointer;
+}
+.tmp_scroll_set {
+	position:absolute;
+	overflow-y:auto;
+	width:100%;
+	top:40px;
+	bottom:0;
+	left:0;
+}
+.tmp_scroll_set .set_type {
+	display:block;
+	padding: 0 15px;
+	box-sizing:border-box;
+	background:#f5f5f5;
+	line-height:38px;
+	position:relative;
+	border-bottom:1px solid #ddd;
+	font-weight:bold;
+}
+.tmp_scroll_set .set_type:after {
+	content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-left: 5px solid #333;
+    border-bottom: 5px solid transparent;
+    vertical-align: middle;
+    margin-right: 10px;
+    margin-bottom: 4px;
+    position: absolute;
+    right: 2px;
+    top: 50%;
+    margin-top: -5px;
+}
+.structured_cont li {
+	cursor:pointer;
+	line-height: 38px;
+	padding:0 15px;
+	color:#666;
+	font-size: 14px;
+}
+.structured_cont li:before {
+	content:"";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    background: #666;
+    margin-right: 10px;
+    vertical-align: middle;
+    margin-bottom: 2px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+.structured_cont li:hover {
+	background:#ebebeb;
+}
+.tmp_scroll_set .set_open:after {
+	content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-top: 5px solid #333;
+    border-right: 5px solid transparent;
+    vertical-align: middle;
+    margin-right: 10px;
+    margin-bottom: 4px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -2px;
+}
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+.tmp_scroll_set::-webkit-scrollbar
+{
+	width: 0px;
+	height: 0px;
+	background-color: #F5F5F5;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+.tmp_scroll_set::-webkit-scrollbar-track
+{
+	/*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+/*定义滑块 内阴影+圆角*/
+.tmp_scroll_set::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	/*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);*/
+	background-color: #ccc;
+}
+/*右侧的知识库*/
+.tmp_knowledge {
+	width: 700px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    box-shadow: -3px 8px 17px #ddd;
+    z-index: 99;
+    background: #fff;
+}
+.Knowledge_tab {
+	padding: 15px;
+}
+.Knowledge_tab a {
+	display:inline-block;
+	line-height:40px;
+	width:110px;
+	text-align:center;
+	background:linear-gradient(to top,#ededed,#fdfdfd);
+	border:1px solid #C5C5C5;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	box-sizing:border-box;
+	margin-right:10px;
+}
+.knowledge_tree {
+	position: absolute;
+	top: 112px;
+	bottom:0;
+	left:0;
+	width: 170px;
+	border-right:2px dotted #ddd;
+	overflow-y:auto;
+}
+.knowledge_tree::-webkit-scrollbar
+{
+	width: 0px;
+	height: 0px;
+	background-color: #F5F5F5;
+}
+.knowledge_tree::-webkit-scrollbar-track
+{
+	/*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+.knowledge_tree::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	/*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);*/
+	background-color: #ccc;
+}
+.knowledge_tree .patient_case_record .patientcase_li{
+	border:0;
+}
+.knowledge_li li {
+	line-height: 36px;
+	padding-left: 30px;
+	cursor:pointer;
+}
+.knowledge_li li input[type=checkbox]{
+	margin-right: 5px;
+	vertical-align: middle;
+	margin-bottom: 7px;
+}
+.knowledge_dialog {
+	position: absolute;
+	top: 112px;
+	bottom:78px;
+	left:175px;
+	right:0;
+	overflow-y:scroll;
+	background:#f5f5f5;
+	padding: 10px;
+	box-sizing:border-box;
+}
+.knowledge_dialog::-webkit-scrollbar
+{
+	width: 0px;
+	height: 0px;
+	background-color: #F5F5F5;
+}
+.knowledge_dialog::-webkit-scrollbar-track
+{
+	/*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+.knowledge_dialog::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	/*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);*/
+	background-color: #ccc;
+}
+.knowledge_btn {
+	position:absolute;
+	bottom:0;
+	right:0;
+	left: 172px;
+	text-align:center;
+	background:#fff;padding-bottom:20px;
+}
+.knowledge_btn a {
+	display:inline-block;
+	width:100px;
+	line-height:34px;
+	background:#2B579A;
+	color:#fff;
+	border:1px solid #2B579A;
+	box-sizing:border-box;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+.knowledge_btn a:last-child{
+	color:#2B579A;
+	background:#fff;
+	margin-left:10px;
+}
+.dialog_card {
+	background:#D7EEF7;
+	color:#39A0BA;
+	padding: 10px;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	font-size:13px;
+	margin-bottom:15px;
+}
+.tmp_tab_cont {
+	height: 100px;
+    border-bottom: 1px solid #ddd;
+    display: none;
+    z-index: 9;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+/*表达式*/
+.tmp_expression,.tmp_character {
+	width:300px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    box-shadow: -3px 8px 17px #ddd;
+    z-index: 99;
+    background: #fff;
+}
+
+.expression_cont .tmp_symbol{
+	display:inline-block;
+	width: 30px;
+	height:30px;
+	text-align:center;
+	line-height:30px;
+	border:1px solid #777;
+	margin-right:10px;
+	margin-top:10px;
+}
+.expression_cont .expression_center_li {
+	text-align:center;
+	padding: 10px 30px;
+}
+.internal_title {
+	background:#f5f5f5;
+	padding:0 15px;
+	line-height:36px;
+}
+.medical_expression_fa {
+	padding: 20px;
+	box-sizing:border-box;
+}
+.medical_expression_fa:after{
+	content:"";
+	display:block;
+	height:0;
+	clear:both;
+}
+.medical_expression {
+	border:1px solid #777;
+	width:115px;
+	height:120px;
+	float:left;
+	position:relative;
+}
+.medical_expression:nth-of-type(odd) {
+	margin-right: 30px;
+}
+.medical_expression .onetop {
+	border: 1px dotted #777;
+    width: 21px;
+    height: 32px;
+    position: absolute;
+    top: 17px;
+    left: 30px;
+}.medical_expression .threeright {
+	border:1px dotted #777;
+	width: 32px;
+	height: 42px;
+	position:absolute;
+	top:35px;
+	right:20px;
+}
+.medical_expression .twobottom {
+	border: 1px dotted #777;
+    width: 21px;
+    height: 32px;
+    position: absolute;
+    bottom: 17px;
+    left: 30px;
+}
+.medical_expression hr {
+	position: absolute;
+    width: 36px;
+    background: #777;
+    top: 37px;
+    height: 1px;
+    left: 20px;
+}
+.special_character {
+	padding: 10px;
+}
+.special_character a {
+	display: inline-block;
+	padding: 0 15px;
+	line-height: 30px;
+	height: 30px;
+	color:#666;
+}
+.special_character a:hover {
+	background: #f5f5f5;
+}
+.text_content {
+	position:absolute;
+	bottom:0;
+	width:100%;
+	top:80px;
+}
+.bottom_newadd {
+	position:absolute;
+	bottom:0;
+	width:100%;
+	text-align:center;
+}
+.template_inp_duan {
+	line-height: 32px;
+    width: 110px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    outline: none;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.new_addtemplate {
+	width:500px;
+	height:270px;
+}
+.content_top_tittle {
+	line-height: 50px;
+	padding: 0 25px;
+	border-bottom: 1px solid #ddd;
+	background:#fff;
+}
+.knowledge_edit {
+	padding: 20px;
+    background: #fff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    top: 51px;
+    overflow-y:auto;
+}
+.knowledge_edit li {
+	margin-bottom: 15px;
+}
+.knowledge_edit li:after {
+	content:"";
+	height:0;
+	display: block;
+	clear:both;
+}
+.knowledge_edit .equalwidth_tit {
+	float:left;
+	width: 140px;
+	text-align:right;
+	padding-right: 15px;
+	box-sizing:border-box;
+	line-height: 34px;
+}
+.knowledge_edit .equalwidth_cont {
+	width: calc(100% - 140px);
+	float:left;
+	position:relative;
+}
+.knowledge_edit .in_box {
+	width: 500px;
+	line-height:34px;
+	border:1px solid #ddd;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	outline:none;
+	display:block;
+	height:34px;
+	position:relative;
+	padding: 0 15px;
+	box-sizing: border-box;
+}
+.knowledge_edit .inbox_arrowbottom:after {
+	content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-top: 5px solid #333;
+    border-right: 5px solid transparent;
+    vertical-align: middle;
+    margin-right: 10px;
+    margin-bottom: 4px;
+    position: absolute;
+    right: 2px;
+    top: 50%;
+    margin-top: -2px;
+}
+.knowledge_edit textarea.in_box {
+	height: 400px;
+	resize:none;
+	width: 90%;
+}
+.choose_directory {
+	width:400px;
+	height:700px;
+}
+.directory_tree {
+	position:absolute;
+	top: 51px;
+	bottom: 60px;
+	width: 100%;
+	overflow-y:auto;
+}
+.choose_directory .layer_btn_fa {
+	position:absolute;
+	bottom:10px;
+	width:100%;
+}
+.choose_directory .last_li a:before {
+	content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    background: #999;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.choose_directory .last_li a {
+	background:#fff;
+	color:#999;
+}

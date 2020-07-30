@@ -20,11 +20,12 @@
         dll方式就是指定包在项目中，build的时候不在打包对应的包，使用的时候引入。
         webpack通过webpack.DllPlugin与webpack.DllReferencePlugin两个内嵌插件实现此功能。
 2、webpack的配置有哪一些？
-    比如entry，output，
+    比如entry，output，resolve,css.loaderOption,plugins,devServer,configureWebpack,resolve.alias
     那么你使用过的loader和plugins有哪些？
 
 3、你是否了解过react高阶函数，比如redux的connect，
     高阶函数的作用是直接把react的组件作为参数传给函数，react组件只负责自己的数据渲染，而页面逻辑，以及一些操作，交给高阶函数去做，
+    返回一个被包装的组件
 4、react的一些生命周期函数
     componentWillmount()
     render()
@@ -35,7 +36,9 @@
 
 5、页面的重绘和重排？
     重绘的话，比如改变元素的color颜色，
-    重排的话，就是改变页面的结构，使页面上的一些元素需要重新计算。
+    重排的话，就是改变页面的结构，使页面上的一些元素需要重新计算。2.浏览器窗口尺寸改变 3.元素位置和尺寸发生改变的时候 4.新增和删除可见元素 5.内容发生改变（文字数量或图片大小等等）
+        6.元素字体大小变化。7.激活CSS伪类（例如：:hover）。 8.设置style属性 9.查询某些属性或调用某些方法。比如说：offsetTop、offsetLeft、 offsetWidth、offsetHeight、
+        scrollTop、scrollLeft、scrollWidth、scrollHeight、clientTop、clientLeft、clientWidth、clientHeight
 
 6、对于浏览器缓存，你了解哪些？
     浏览器每次发起请求，都会先在浏览器缓存中查找该请求的结果以及缓存标识
@@ -44,7 +47,8 @@
         强制缓存：
             控制强制缓存的字段分别是Expires和Cache-Control，其中Cache-Control优先级比Expires高。
             强制缓存分为内存缓存（读取时效快）和硬盘缓存（需要度存储的硬盘文件，执行I/O操作，然后重新解析该缓存内容，读取比较复杂
-            控制协商缓存的字段分别有：cache-control和expires，cache-control（值主要有：public，private（只有客户端可以缓存），no-cache，no-store，max-age）的优先级高于expries，使用的是过期多少，而expries使用的服务器时间和客户端时间的对比，不是很稳定
+            控制协商缓存的字段分别有：cache-control和expires，cache-control（值主要有：public，private（只有客户端可以缓存），no-cache，no-store，max-age）
+            的优先级高于expries，使用的是过期多少，而expries使用的服务器时间和客户端时间的对比，不是很稳定
         协商缓存：
             强制缓存失效后，浏览器携带缓存标识向服务器发起请求，由服务器根据缓存标识决定是否使用缓存的过程
             主要有两种情况，一种是服务器返回是资源没有更新，http为304的状态
@@ -60,4 +64,45 @@
     区别：hash路由是不请求后端接口的，但是会带#/号
          history会请求后端接口，但是后端需要将所有的请求指到根目录之后，再由vue使用浏览器的pushSatet和replaceSate来进行路由的跳转
 8、说到原型链，你使用过的有哪些继承方法？
-    构造函数继承，原型继承，
+    构造函数继承，
+    原型继承：
+    ```
+    function A(name) {
+        this.name = name;
+    }
+    A.prototype.getName = function() { console.log(this.name); }
+
+    function B(name, color) {
+        A.call(this, name)
+        this.color = color;
+    }
+    B.prototype.getColor = function() { console.log(this.color); }
+    B.prototype = new A();
+    let b = new B('aa', 'red');
+    console.log(b.getName())
+
+9、在项目中遇到的问题和解决思路，
+    在ios12.1版本中iphoneX中遇到，input输入框，聚焦输入框，弹出虚拟键盘，点击键盘收起时，下半部分点击无效，然后发现透明区域body被滚动至虚拟键盘弹框位置之上，点击完成时，
+    没有完成回推，而ios在点击虚拟键盘的完成时会触发失焦事件，然后我们在项目中运用的都是封装过后的input框，刚好提供我们触发方法的一个钩子，那么就在onblur的事件中将页面的scrollTop设置为0，
+    但是由于页面的滚动也会触发失焦事件，所以就时解决一个bug，又产生一个新的问题，然后我们就发现，其实可以通过回退到虚拟键盘弹起时body的滚动位置，实现document.body.scrollTop = document.body.scrollTop,问题由此得到解决
+
+10、react中的受控组件和不受控组件
+    不受控组件，我们可以根据ref来获取组件的表单内容
+
+11、当你使用 target='_blank' 打开一个新的标签页时，新页面的 window 对象上有一个属性 opener，它指向的是前一个页面的 window 对象，因此，后一个页面就获得了前一个页面的控制权，so 可怕！！
+    比如的 a 标签是这样 <a href='/index'>打开连接</a> ，打开后在控制台输入 window.opener.alert(1) 看看？
+    甚至在跨域的情况下他也可以生效，比如打开 <a href='https://github.com/ZhangFe/Blog'>链接<a/>后，你可以使用 window.opener.location.replace 更改前一个页面的 url。
+    比如你的链接现在变成了这样 <a href='/index' rel=noopener>链接<a/> ，再打开后你会发现 window.opener 已经被置为了 null，如果是一些旧的浏览器，可以使用 rel=noreferrer，它不仅禁用了 window.opener，
+    后一个页面也无法获取到 referrer，再不行，可以利用 js 来打开新的页面，之后将 opener 置为 null 来完成这个功能
+    ```
+    var otherWindow = window.open();
+    otherWindow.opener = null;
+    otherWindow.location = url;
+    ```
+
+12、书名
+    javascript权威指南
+    数据结构与算法JavaScript描述
+    图解HTTP
+    隐匿在计算机软硬件背后的语言(永不退色的计算机科学经典著作)
+    css揭秘
