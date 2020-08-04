@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>debounce</title>
+</head>
+<body>
+    <input type="text" id="ipt">
+    <script>
+        var oIpt = document.getElementById('ipt');
+
+        oIpt.addEventListener('input', function(e) {
+            db1(e.target.value)
+            th1(e.target.value)
+        })
+
+        function debounce(fn, delay) {
+            var timer = null;
+            return function() {
+                let self = this, _args = arguments;
+                if (timer) {
+                    clearTimeout(timer)
+                }
+                timer = setTimeout(function() {
+                    fn.call(self, _args)
+                }, delay)
+            }
+        }
+
+        function d(val) {
+            console.log('防抖成功了', val, Date.now())
+        }
+        var db1 = debounce(d, 1000)
+
+        function throttle(fn, delay) {
+            let o = Date.now();
+            return function() {
+                let n = Date.now(),
+                    _args = arguments;
+                if (n > o + delay) {
+                    fn.apply(this, _args)
+                    o = Date.now();
+                } else {
+                    n = Date.now()
+                }
+            }
+        }
+
+        function t(val) {
+            console.log('节流成功了', val, Date.now())
+        }
+
+        var th1 = throttle(t, 1000)
+    </script>
+</body>
+</html>

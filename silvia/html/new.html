@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>new关键字做了什么</title>
+</head>
+<body>
+    <script>
+        function createObj() {
+            var obj = {},
+                con = [].shift.call(arguments);
+
+            obj.__proto__ = con.prototype;
+            var ret = con.apply(obj, arguments);
+            return typeof ret === 'object'? ret||null :  obj // 如果返回值是null，也不至于出现问题
+        }
+
+        function A(name, age) {
+            this.name = name;
+            this.age = age
+        }
+        A.prototype.strength = 50;
+        A.prototype.sayName = function() {
+            console.log(this.name)
+        }
+
+        var a = createObj(A, 'silvia', 18)
+        console.log(a)
+        console.log(a.strength)
+        a.sayName()
+        
+        function Otaku (age) {}
+
+        Otaku.prototype.sayHello = function() {
+            console.log('hello')
+        }
+
+        // function Otaku(name, age) {
+        //     this.strength = 60;
+        //     this.age = age;
+
+        //     return {
+        //         name: name,
+        //         habit: 'Games'
+        //     }
+        // }
+        var person = createObj(Otaku, 18)
+        console.log(person)
+        person.sayHello()
+        // function Otaku (name, age) {
+        //     this.strength = 60;
+        //     this.age = age;
+
+        //     return 'handsome boy';
+        // }
+
+        // var person = new Otaku('Kevin', '18');
+
+        // console.log(person.name)
+        // console.log(person.habit)
+        // console.log(person.strength)
+        // console.log(person.age)
+    </script>
+</body>
+</html>

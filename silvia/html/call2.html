@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>call2</title>
+</head>
+<body>
+    <script>
+        Function.prototype.call2 = function(context) {
+            var context = context || window;
+
+            context.fn = this;
+
+            var args = [];
+            for(var i = 1, l = arguments.length; i < l; i++) {
+                args.push('arguments[' + i + ']');
+            }
+            
+            var result = eval('context.fn(' + args + ')')
+            delete context.fn
+
+            return result
+        }
+        var value = 1;
+
+        var obj = {
+            value: 2
+        }
+        function a(name, sex) {
+            return {
+                value: this.value,
+                name: name,
+                sex: sex
+            }
+        }
+        console.log(a.call2(obj, 'silvia', '女'))
+        console.log(a.call2(null))
+
+        Function.prototype.apply2 = function(context, arr) {
+            context = Object(context) || window;
+
+            context.fn = this;
+            var result;
+            if (!arr) {
+                result = context.fn()
+            } else {
+                var args = [];
+    
+                for (var i = 0; i < arr.length; i++ ) {
+                    args.push('arr[' + i + ']')
+                }
+    
+                result = eval('context.fn(' + args + ')')
+    
+            }
+            delete context.fn
+
+            return result
+        }
+        var obj1 = {
+            value: 3
+        }
+        function a(name, sex) {
+            return {
+                value: this.value,
+                name: name,
+                sex: sex
+            }
+        }
+        console.log(a.apply2(obj1, 'silvia'))
+        console.log(a.apply2(obj1, ['silvia1', '女1']))
+        console.log(a.apply2(null))
+
+        function bind2() {
+            return function() {
+                
+            }
+        }
+    </script>
+</body>
+</html>

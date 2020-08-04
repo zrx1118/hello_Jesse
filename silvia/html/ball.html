@@ -17,7 +17,7 @@
         }
         #box span{
             position: absolute;
-            display: block;
+            display: inline-block;
             border-radius: 50%;
         }
     </style>
@@ -71,11 +71,12 @@
                 }, 60)
             }
         }
+        var random = Math.random;
         for (var i = 0; i < 80; i++){
-            var width = Math.floor(Math.random()*10 + 30),
-                bgColor = 'rgba(' + Math.random()*255 + ',' + Math.random()*255 + ',' + Math.random()*255 +',' + Math.random().toFixed(2) +')',
-                speedX = Math.random()*10,
-                speedY = Math.random()*10;
+            var width = Math.floor(random()*10 + 30),
+                bgColor = 'rgba(' + random()*255 + ',' + random()*255 + ',' + random()*255 +',' + random().toFixed(2) +')',
+                speedX = random()*10,
+                speedY = random()*10;
 
             new Ball(width, bgColor, speedX, speedY);
         }
